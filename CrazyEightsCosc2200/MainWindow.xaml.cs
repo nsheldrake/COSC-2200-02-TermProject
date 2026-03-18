@@ -20,5 +20,40 @@ namespace CrazyEightsCosc2200
         {
             InitializeComponent();
         }
+
+
+
+
+        // Click event handlers.
+
+        // Reset game click.
+        public void resetClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        // Rules click.
+        public void rulesClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        // Settings click.
+        public void settingsClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        // Draw click.
+        public void drawClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        // Play click.
+        public void playClick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

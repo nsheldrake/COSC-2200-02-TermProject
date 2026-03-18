@@ -5,8 +5,96 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CrazyEightsCosc2200"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Crazy 8's"
+        Height="700" Width="1000"
+        MinHeight="700" MinWidth="1000"
+        WindowStartupLocation="CenterScreen">
+    
+    <DockPanel>
+        <!-- Top Menu Bar -->
+        <DockPanel DockPanel.Dock="Top" Background="#06193B" Height="50">
+            
+            <!-- Left Side: Reset Button -->
+            <Button x:Name="buttonReset"
+                    Content="Reset"
+                    Height="30"
+                    Width="80" Margin="10"                    
+                    Background="#06193B"
+                    Foreground="White"
+                    BorderBrush="#6666BB"
+                    DockPanel.Dock="Left"
+                    Click="resetClick"/>
+            
+            <!-- Right Side: Rules and Settings Buttons -->
+            <StackPanel Orientation="Horizontal"
+                        DockPanel.Dock="Right"
+                        VerticalAlignment="Center"
+                        Margin="8,0">
+                <Button x:Name="buttonRules"
+                        Content="Rules"
+                        Height="30"
+                        Width="80" Margin="6"
+                        Background="#06193B"
+                        Foreground="White"
+                        BorderBrush="#6666BB"
+                        Click="rulesClick"/>
+                <Button x:Name="buttonSettings"
+                        Content="Settings"
+                        Height="30"
+                        Width="80" Margin="0"
+                        Background="#06193B"
+                        Foreground="White"
+                        BorderBrush="#6666BB"
+                        Click="settingsClick"/>
+            </StackPanel>
 
-    </Grid>
+            <!-- Center: Game Title -->
+            <TextBlock Text="CRAZY 8'S"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+        </DockPanel>
+
+        <!-- Bottom: Draw / Play & Hand -->
+        <StackPanel DockPanel.Dock="Bottom" Background="#06193B">
+            
+            <!-- Draw and Play Buttons -->
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0,10">
+                <Button x:Name="buttonDraw"
+                        Content="Draw"
+                        Width="100" Height="35"
+                        Margin="10,0"
+                        Background="#2C4863"
+                        Foreground="White"
+                        BorderBrush="#517DA8"
+                        Click="drawClick"/>
+                <Button x:Name="buttonPlay"
+                        Content="Play"
+                        Width="100" Height="35"
+                        Margin="10,0"
+                        Background="#1B520C"
+                        Foreground="White"
+                        BorderBrush="#389C38"
+                        Click="playClick"/>
+            </StackPanel>
+            
+            <!-- Bottom: Users Hand -->
+            <!-- The card objects in the hand will be displayed here -->
+            <ItemsControl x:Name="userHand">
+                <StackPanel Orientation="Horizontal"/>
+
+            </ItemsControl>
+            
+            
+        </StackPanel>
+
+        <!-- Middle: Deck / Pile -->
+        <Grid Background="#0E2B06">
+            
+        </Grid>
+    </DockPanel>
 </Window>
