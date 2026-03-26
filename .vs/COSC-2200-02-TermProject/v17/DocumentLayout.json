@@ -1,12 +1,41 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\college2\\year2\\year2semester2\\cosc2200\\crazyeights_cosc2200\\COSC-2200-02-TermProject\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\college2\\year2\\year2semester2\\cosc2200\\crazyeights_cosc2200\\COSC-2200-02-TermProject\\CrazyEightsCosc2200\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:CrazyEightsCosc2200\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\college2\\year2\\year2semester2\\cosc2200\\crazyeights_cosc2200\\COSC-2200-02-TermProject\\CrazyEightsCosc2200\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "CrazyEightsCosc2200\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\college2\\year2\\year2semester2\\cosc2200\\crazyeights_cosc2200\\COSC-2200-02-TermProject\\CrazyEightsCosc2200\\MainWindow.xaml.cs",
+              "RelativeToolTip": "CrazyEightsCosc2200\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-26T02:07:00.353Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
