@@ -16,9 +16,13 @@ namespace CrazyEightsCosc2200
     /// </summary>
     public partial class MainWindow : Window
     {
+        private GameLogic game;
         public MainWindow()
         {
             InitializeComponent();
+
+            game = new GameLogic();        //  Create object
+            this.DataContext = game;       //  Connect UI to GameLogic
         }
 
 
@@ -29,7 +33,7 @@ namespace CrazyEightsCosc2200
         // Reset game click.
         public void resetClick(object sender, RoutedEventArgs e)
         {
-
+            game.UpdateUI();   // test update
         }
 
         // Rules click.
