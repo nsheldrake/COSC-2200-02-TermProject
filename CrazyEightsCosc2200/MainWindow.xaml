@@ -84,17 +84,57 @@
             
             <!-- Bottom: Users Hand -->
             <!-- The card objects in the hand will be displayed here -->
-            <ItemsControl x:Name="userHand">
-                <StackPanel Orientation="Horizontal"/>
-
-            </ItemsControl>
-            
-            
+            <TextBlock Text="Your Hand"
+                       Foreground="White"
+                       FontSize="15"
+                       FontWeight="Bold"
+                       Margin="15,0,0,5"/>
+            <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                          VerticalScrollBarVisibility="Disabled"
+                          Margin="10,0,10,10">
+                <ItemsControl x:Name="userHand">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </ScrollViewer>
         </StackPanel>
 
         <!-- Middle: Deck / Pile -->
         <Grid Background="#0E2B06">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <!-- Computer Area -->
+            <StackPanel Grid.Row="0"
+                        HorizontalAlignment="Center"
+                        Margin="0,20,0,10">
+                <TextBlock Text="Computer Player"
+                           Foreground="White"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,8"/>
+                <ItemsControl x:Name="computerHand">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+
+                <TextBlock Text="{Binding OpponentCardCountText}"
+                           Foreground="White"
+                           FontSize="14"
+                           HorizontalAlignment="Center"
+                           Margin="0,8,0,0"/>   
+            </StackPanel>
             
+
         </Grid>
     </DockPanel>
 </Window>
