@@ -8,23 +8,23 @@
     "net8.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\amyle\\.nuget\\packages\\": {},
+    "C:\\Users\\Nathan\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\amyle\\Desktop\\Durham College\\2026 Winter\\COSC 2200\\Crzay8\\CrazyEightsCosc2200\\CrazyEightsCosc2200.csproj",
+      "projectUniqueName": "C:\\college2\\year2\\year2semester2\\cosc2200\\crazyeights_cosc2200\\COSC-2200-02-TermProject\\CrazyEightsCosc2200\\CrazyEightsCosc2200.csproj",
       "projectName": "CrazyEightsCosc2200",
-      "projectPath": "C:\\Users\\amyle\\Desktop\\Durham College\\2026 Winter\\COSC 2200\\Crzay8\\CrazyEightsCosc2200\\CrazyEightsCosc2200.csproj",
-      "packagesPath": "C:\\Users\\amyle\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\amyle\\Desktop\\Durham College\\2026 Winter\\COSC 2200\\Crzay8\\CrazyEightsCosc2200\\obj\\",
+      "projectPath": "C:\\college2\\year2\\year2semester2\\cosc2200\\crazyeights_cosc2200\\COSC-2200-02-TermProject\\CrazyEightsCosc2200\\CrazyEightsCosc2200.csproj",
+      "packagesPath": "C:\\Users\\Nathan\\.nuget\\packages\\",
+      "outputPath": "C:\\college2\\year2\\year2semester2\\cosc2200\\crazyeights_cosc2200\\COSC-2200-02-TermProject\\CrazyEightsCosc2200\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\amyle\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Nathan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

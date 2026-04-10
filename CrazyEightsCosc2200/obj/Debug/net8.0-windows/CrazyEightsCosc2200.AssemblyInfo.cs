@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CrazyEightsCosc2200")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+60f55c9d3156410fc5ea79f04fcc0370ca846aed")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+90b4a570abc3a9fe1f3ccaf199e5f0c658b4a932")]
 [assembly: System.Reflection.AssemblyProductAttribute("CrazyEightsCosc2200")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CrazyEightsCosc2200")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
