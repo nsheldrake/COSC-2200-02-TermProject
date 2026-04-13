@@ -13,7 +13,6 @@ namespace CrazyEightsCosc2200
         // Private properties
         private string backgroundColor;
         private string menuColor;
-        private string language;
 
         // Public getters and setters
         public string BackgroundColor
@@ -28,18 +27,11 @@ namespace CrazyEightsCosc2200
             set { menuColor = value; }
         }
 
-        public string Language
-        {
-            get { return language; }
-            set { language = value; }
-        }
-
         // Constructor 
         public Settings()
         {
-            backgroundColor = "#FFFFFF";
-            menuColor = "#1E3A5F";
-            language = "English";
+            backgroundColor = "#0E2B06";
+            menuColor = "#06193B";
             // Load saved settings upon start up
             LoadSettings(); 
         }
@@ -49,11 +41,20 @@ namespace CrazyEightsCosc2200
         {
             try
             {
+                string settingsFile = File.ReadAllText("./settings.json");
+                Settings? loaded = JsonSerializer.Deserialize<Settings>(settingsFile);
+
+                if (loaded != null)
+                {
+                    backgroundColor = loaded.BackgroundColor;
+                    menuColor = loaded.MenuColor;
+                }
             }
             catch (Exception e)
             {
                 Console.WriteLine($"Failed to load settings: {e.Message}");
             }
+
         }
 
         // Save current settings to JSON file
@@ -61,6 +62,12 @@ namespace CrazyEightsCosc2200
         {
             try
             {
+                string saved = JsonSerializer.Serialize(this, new JsonSerializerOptions
+                {
+                    WriteIndented = true
+                });
+
+                File.WriteAllText("./settings.json", saved);
             }
             catch (Exception e)
             {

@@ -22,7 +22,7 @@ namespace CrazyEightsCosc2200
         // Used to check the cards rank and suit to check if the next move is valid
         public Card LastCard()
         {
-            
+            return pile.Last();
         }
 
         // Adds a card onto the top of the pile

@@ -6,14 +6,40 @@ using System.Threading.Tasks;
 
 namespace CrazyEightsCosc2200
 {
-    internal class Player
+    public class Player
     {
-        public string Name;
-        public List<Card> hand = new List<Card>();
+        public string Name { get; set; }
+        public Hand hand { get; set; }
 
         public Player(string name)
         {
             Name = name;
+            hand = new Hand();
         }
+
+        // Play a card onto the pile
+        public void PlayCard(Card card, Pile pile)
+        {
+            hand.RemoveCard(card);
+            pile.AddLastCard(card);
+        }
+
+        // Draw a card from the deck and add to hand
+        public void DrawCard(Deck deck)
+        {
+            if (!deck.DeckIsEmpty())
+            {
+                Card drawnCard = deck.Draw();
+                hand.AddCard(drawnCard);
+            }
+        }
+
+        // Check if the played card matches the suit of the last played card
+        public bool SuitMatch(Card card, Pile pile)
+        {
+            Card topCard = pile.LastCard();
+            return card.Suit == topCard.Suit || card.Rank == topCard.Rank || card.Rank == Rank.Eight;
+        }
+
     }
 }

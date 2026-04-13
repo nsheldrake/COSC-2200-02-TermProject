@@ -36,8 +36,12 @@ namespace CrazyEightsCosc2200
         public bool HandIsEmpty()
         {
             // If the amount of cards in the hand is < 1, return true
-
+            if (hand.Count < 1)
+            {
+                return true;
+            }
             // Else return false
+            return false;
         }
 
         // All the cards in your hand will be face up so you can see them
