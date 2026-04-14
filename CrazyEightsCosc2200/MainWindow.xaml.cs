@@ -52,20 +52,16 @@ namespace CrazyEightsCosc2200
         // Rules click.
         public void rulesClick(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(
-                "CRAZY EIGHTS RULES:\n\n" +
-                "1. Each player is dealt 5 cards.\n" +
-                "2. The remaining cards form the draw pile.\n" +
-                "3. The top card of the draw pile is flipped to start the discard pile.\n" +
-                "4. On your turn, play a card that matches the suit or rank of the top discard card.\n" +
-                "5. Eights are wild — play an Eight on any card and choose the new suit.\n" +
-                "6. If you cannot play, draw a card from the deck.\n" +
-                "7. The first player to empty their hand wins!\n",
-                "How to Play Crazy Eights",
-                MessageBoxButton.OK,
-                MessageBoxImage.Information
-            );
+            RulesScreen.Visibility = Visibility.Visible;
+            DarkBackground.Visibility = Visibility.Visible;
 
+        }
+
+        // Close rules click.
+        public void CloseRulesClick(object sender, RoutedEventArgs e)
+        {
+            RulesScreen.Visibility = Visibility.Collapsed;
+            DarkBackground.Visibility = Visibility.Collapsed;
         }
 
         // Draw click.
@@ -126,26 +122,46 @@ namespace CrazyEightsCosc2200
             game.UpdateUI();
         }
 
-        // Settings click. (toggle visibility of the settings panel)
+        // Settings click. (toggle visibility of the settings screen)
         public void settingsClick(object sender, RoutedEventArgs e)
         {
-            SettingsPanel.Visibility = SettingsPanel.Visibility == Visibility.Visible
-                ? Visibility.Collapsed
-                : Visibility.Visible;
+            if (SettingsScreen.Visibility == Visibility.Visible)
+            {
+                SettingsScreen.Visibility = Visibility.Collapsed;
+                DarkBackground.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                SettingsScreen.Visibility = Visibility.Visible;
+                DarkBackground.Visibility = Visibility.Visible;
+            }
         }
+        
 
         // Save settings click — inside the settings panel
         public void SaveSettingsClick(object sender, RoutedEventArgs e)
         {
-            if (BackgroundColorPicker.SelectedItem != null)
-                settings.BackgroundColor = ((ComboBoxItem)BackgroundColorPicker.SelectedItem).Content.ToString();
+            if (BackgroundColorPicker.SelectedItem is ComboBoxItem selectedBackgroundColor)
+                settings.BackgroundColor = selectedBackgroundColor.Tag.ToString();
 
-            if (MenuColorPicker.SelectedItem != null)
-                settings.MenuColor = ((ComboBoxItem)MenuColorPicker.SelectedItem).Content.ToString();
+            if (MenuColorPicker.SelectedItem is ComboBoxItem selectedMenuColor)
+                settings.MenuColor = selectedMenuColor.Tag.ToString();
 
             settings.SaveSettings();
             MessageBox.Show("Settings saved!", "Settings", MessageBoxButton.OK, MessageBoxImage.Information);
-            SettingsPanel.Visibility = Visibility.Collapsed;
+
+            SettingsScreen.Visibility = Visibility.Collapsed;
+            DarkBackground.Visibility = Visibility.Collapsed;
+        }
+
+        // Exit settings click 
+        public void ExitSettingsClick(object sender, RoutedEventArgs e)
+        {
+            // Hide settings panel
+            SettingsScreen.Visibility = Visibility.Collapsed;
+
+            // Hide dark overlay
+            DarkBackground.Visibility = Visibility.Collapsed;
         }
     }
 }

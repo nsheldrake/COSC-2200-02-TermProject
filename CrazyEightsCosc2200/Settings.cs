@@ -33,7 +33,7 @@ namespace CrazyEightsCosc2200
             backgroundColor = "#0E2B06";
             menuColor = "#06193B";
             // Load saved settings upon start up
-            LoadSettings(); 
+            // LoadSettings(); 
         }
 
         // Load settings from JSON file

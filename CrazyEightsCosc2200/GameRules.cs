@@ -53,7 +53,7 @@ namespace CrazyEightsCosc2200
         // Check if player wins
         public bool IsWinner(Player player)
         {
-            return player.hand.Count == 0;
+            return player.hand.hand.Count == 0;
         }
     }
 }
