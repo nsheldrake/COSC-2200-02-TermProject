@@ -419,5 +419,40 @@
 
         </StackPanel>
 
+        <!-- Winner Screen -->
+        <StackPanel x:Name="WinnerScreen"
+            Visibility="Collapsed"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Panel.ZIndex="2">
+
+            <TextBlock x:Name="WinnerText"
+               FontSize="28"
+               FontWeight="Bold"
+               Foreground="White"
+               HorizontalAlignment="Center"
+               Margin="0,0,0,10"/>
+
+            <TextBlock x:Name="WinnerSubText"
+               FontSize="18"
+               Foreground="White"
+               HorizontalAlignment="Center"
+               Margin="0,0,0,30"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Play Again"
+                Width="120" Height="40" Margin="10"
+                Background="#06193B" Foreground="White"
+                BorderBrush="#6666BB"
+                Click="WinnerResetClick"/>
+                <Button Content="Exit"
+                Width="120" Height="40" Margin="10"
+                Background="#06193B" Foreground="White"
+                BorderBrush="#6666BB"
+                Click="WinnerExitClick"/>
+            </StackPanel>
+
+        </StackPanel>
+
     </Grid>
 </Window>

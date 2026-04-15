@@ -80,6 +80,13 @@ namespace CrazyEightsCosc2200
 
             game.realPlayer.DrawCard(game.deck);
             game.NextTurn();
+            // After computer plays check for winner
+            Player winner = game.AnnounceWinner();
+            if (winner != null)
+            {
+                ShowWinnerScreen(winner);
+                return;
+            }
             game.UpdateUI();
 
         }
@@ -129,12 +136,25 @@ namespace CrazyEightsCosc2200
             // Check if player won
             if (game.realPlayer.hand.HandIsEmpty())
             {
-                game.AnnounceWinner();
-                return;
+                Player winner = game.AnnounceWinner();
+                if (winner != null)
+                {
+                    ShowWinnerScreen(winner);
+                    return;
+                }
             }
 
             // Move to computer turn
             game.NextTurn();
+
+            // Check if computer won after their turn
+            Player computerWinner = game.AnnounceWinner();
+            if (computerWinner != null)
+            {
+                ShowWinnerScreen(computerWinner);
+                return;
+            }
+
             game.UpdateUI();
         }
 
@@ -148,11 +168,25 @@ namespace CrazyEightsCosc2200
             // Now continue after Eight was played
             if (game.realPlayer.hand.HandIsEmpty())
             {
-                game.AnnounceWinner();
-                return;
+                // Check for winner
+                Player winner = game.AnnounceWinner();
+                if (winner != null)
+                {
+                    ShowWinnerScreen(winner);
+                    return;
+                }
             }
 
             game.NextTurn();
+
+            // Check if computer won after their turn
+            Player computerWinner = game.AnnounceWinner();
+            if (computerWinner != null)
+            {
+                ShowWinnerScreen(computerWinner);
+                return;
+            }
+
             game.UpdateUI();
         }
 
@@ -161,6 +195,41 @@ namespace CrazyEightsCosc2200
         public void SuitDiamonds(object sender, RoutedEventArgs e) => SuitChosen("Diamonds");
         public void SuitClubs(object sender, RoutedEventArgs e) => SuitChosen("Clubs");
         public void SuitSpades(object sender, RoutedEventArgs e) => SuitChosen("Spades");
+
+
+        // Show the winner screen.
+        private void ShowWinnerScreen(Player winner)
+        {
+            DarkBackground.Visibility = Visibility.Visible;
+            WinnerScreen.Visibility = Visibility.Visible;
+
+            if (winner.Name == game.realPlayer.Name)
+            {
+                WinnerText.Text = "Congratulations!";
+                WinnerSubText.Text = "You won the game!";
+            }
+            else
+            {
+                WinnerText.Text = "Better luck next time!";
+                WinnerSubText.Text = "The computer won the game.";
+            }
+        }
+
+        // Play Again button on winner screen
+        public void WinnerResetClick(object sender, RoutedEventArgs e)
+        {
+            WinnerScreen.Visibility = Visibility.Collapsed;
+            DarkBackground.Visibility = Visibility.Collapsed;
+            game.ResetGame();
+        }
+
+        // Exit button on winner screen
+        public void WinnerExitClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+
 
 
         // Settings click (toggle visibility of the settings screen).

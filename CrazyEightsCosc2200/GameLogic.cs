@@ -109,11 +109,11 @@ namespace CrazyEightsCosc2200
                 // Clear suit after computer plays
                 currentSuit = "";
 
-                if (computerPlayer.hand.HandIsEmpty())
-                {
-                    AnnounceWinner();
-                    return;
-                }
+                //if (computerPlayer.hand.HandIsEmpty())
+                //{
+                //    AnnounceWinner();
+                //    return;
+                //}
 
                 currentState = GameState.PlayerTurn;
             }
@@ -122,14 +122,16 @@ namespace CrazyEightsCosc2200
         }
 
         // Announce the winner
-        public void AnnounceWinner()
+        public Player AnnounceWinner()
         {
             if (realPlayer.hand.HandIsEmpty())
-                System.Windows.MessageBox.Show("You win!", "Game Over", System.Windows.MessageBoxButton.OK);
+                //System.Windows.MessageBox.Show("You win!", "Game Over", System.Windows.MessageBoxButton.OK);
+                return realPlayer;
             else if (computerPlayer.hand.HandIsEmpty())
-                System.Windows.MessageBox.Show("Computer wins!", "Game Over", System.Windows.MessageBoxButton.OK);
+                //System.Windows.MessageBox.Show("Computer wins!", "Game Over", System.Windows.MessageBoxButton.OK);
+                return computerPlayer;
 
-            ResetGame();
+            return null;
         }
 
         // Called when a move is not valid
