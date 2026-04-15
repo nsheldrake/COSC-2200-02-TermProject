@@ -35,9 +35,13 @@ namespace CrazyEightsCosc2200
         }
 
         // Check if the played card matches the suit of the last played card
-        public bool SuitMatch(Card card, Pile pile)
+        public bool SuitMatch(Card card, Pile pile, string currentSuit = "")
         {
             Card topCard = pile.LastCard();
+            // If an Eight was played, match the chosen suit
+            if (!string.IsNullOrEmpty(currentSuit))
+                return card.suit.ToString() == currentSuit || card.Rank == Rank.Eight;
+            // Otherwise normal rules
             return card.Suit == topCard.Suit || card.Rank == topCard.Rank || card.Rank == Rank.Eight;
         }
 

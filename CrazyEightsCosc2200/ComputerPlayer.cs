@@ -14,7 +14,7 @@ namespace CrazyEightsCosc2200
         }
 
         // Play a valid card onto the pile automatically
-        public void PlayCard(Pile pile, Deck deck)
+        public void PlayCard(Pile pile, Deck deck, string currentSuit = "")
         {
             Card cardToPlay = RandomPlay(pile);
 
@@ -31,10 +31,10 @@ namespace CrazyEightsCosc2200
         }
 
         // Pick a random valid card from hand
-        private Card RandomPlay(Pile pile)
+        private Card RandomPlay(Pile pile, string currentSuit = "")
         {
             List<Card> validCards = hand.hand
-                .Where(card => SuitMatch(card, pile))
+                .Where(card => SuitMatch(card, pile, currentSuit))
                 .ToList();
 
             if (validCards.Count == 0)

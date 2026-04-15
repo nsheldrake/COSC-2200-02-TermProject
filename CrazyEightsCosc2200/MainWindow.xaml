@@ -380,5 +380,44 @@
                 Click="CloseRulesClick"/>
         </StackPanel>
 
+        <!-- Suit Selection Screen -->
+        <StackPanel x:Name="SuitScreen"
+            Visibility="Collapsed"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Panel.ZIndex="2">
+
+            <TextBlock Text="You played an Eight! Choose a suit:"
+               FontSize="20"
+               FontWeight="Bold"
+               Foreground="White"
+               HorizontalAlignment="Center"
+               Margin="0,0,0,20"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Hearts"
+                Width="100" Height="40" Margin="10"
+                Background="#06193B" Foreground="White"
+                BorderBrush="#6666BB"
+                Click="SuitHearts"/>
+                <Button Content="Diamonds"
+                Width="100" Height="40" Margin="10"
+                Background="#06193B" Foreground="White"
+                BorderBrush="#6666BB"
+                Click="SuitDiamonds"/>
+                <Button Content="Clubs"
+                Width="100" Height="40" Margin="10"
+                Background="#06193B" Foreground="White"
+                BorderBrush="#6666BB"
+                Click="SuitClubs"/>
+                <Button Content="Spades"
+                Width="100" Height="40" Margin="10"
+                Background="#06193B" Foreground="White"
+                BorderBrush="#6666BB"
+                Click="SuitSpades"/>
+            </StackPanel>
+
+        </StackPanel>
+
     </Grid>
 </Window>

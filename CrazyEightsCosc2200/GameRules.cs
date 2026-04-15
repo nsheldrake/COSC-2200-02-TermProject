@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CrazyEightsCosc2200
 {
-    internal class GameRules
+    public class GameRules
     {
         // Check if a move is valid
         public bool IsMoveValid(Card playedCard, Card topCard, string currentSuit)
@@ -33,27 +33,19 @@ namespace CrazyEightsCosc2200
         // Check if card is 8
         public bool IsCardEight(Card card)
         {
-            return card.rank.ToString() == "Eight";
+            return card.Rank == Rank.Eight;
         }
 
         // Change suit when 8 is played
-        public string ChangeSuit(Card card)
-        {
-            if (IsCardEight(card))
-            {
-                // simple version: random suit
-                string[] suits = { "Hearts", "Spades", "Clubs", "Diamonds" };
-                Random rand = new Random();
-                return suits[rand.Next(suits.Length)];
-            }
-
-            return card.suit.ToString();
-        }
+        //public string ChangeSuit(Card card)
+        //{
+            
+        //}
 
         // Check if player wins
         public bool IsWinner(Player player)
         {
-            return player.hand.hand.Count == 0;
+            return player.hand.HandIsEmpty();
         }
     }
 }

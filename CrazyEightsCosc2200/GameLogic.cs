@@ -18,6 +18,9 @@ namespace CrazyEightsCosc2200
         public Player realPlayer;
         private ComputerPlayer computerPlayer;
         public GameState currentState;
+        public string currentSuit = "";
+
+        public GameRules rules = new GameRules();
 
         public ObservableCollection<Card> RealPlayerHand => realPlayer.hand.hand;
         public ObservableCollection<Card> ComputerHand => computerPlayer.hand.hand;
@@ -84,6 +87,12 @@ namespace CrazyEightsCosc2200
             pile.AddLastCard(deck.Draw());
         }
 
+        // Set current suit to selected suit.
+        public void SetCurrentSuit(string suit)
+        {
+            currentSuit = suit;
+        }
+
         // Move to the next turn and some computerPlayer logic
         public void NextTurn()
         {
@@ -95,7 +104,10 @@ namespace CrazyEightsCosc2200
                 if (deck.DeckIsEmpty() && pile.pile.Count > 1)
                     deck.ReshuffleFromPile(pile);
 
-                computerPlayer.PlayCard(pile, deck);
+                computerPlayer.PlayCard(pile, deck, currentSuit);
+
+                // Clear suit after computer plays
+                currentSuit = "";
 
                 if (computerPlayer.hand.HandIsEmpty())
                 {

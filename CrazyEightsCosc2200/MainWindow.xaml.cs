@@ -101,8 +101,8 @@ namespace CrazyEightsCosc2200
                 return;
             }
 
-            // Check if the move is valid
-            if (!game.realPlayer.SuitMatch(selectedCard, game.pile))
+            // Check if the move is valid suit
+            if (!game.realPlayer.SuitMatch(selectedCard, game.pile, game.currentSuit))
             {
                 game.InvalidMove();
                 return;
@@ -110,6 +110,20 @@ namespace CrazyEightsCosc2200
 
             // Play the card
             game.realPlayer.PlayCard(selectedCard, game.pile);
+
+            // If card is an Eight, show suit picker before continuing
+            if (game.rules.IsCardEight(selectedCard))
+            {
+                selectedCard = null;
+                SuitScreen.Visibility = Visibility.Visible;
+                DarkBackground.Visibility = Visibility.Visible;
+                return; // wait for suit selection before next turn
+            }
+            else
+            {
+                game.SetCurrentSuit("");
+            }
+
             selectedCard = null;
 
             // Check if player won
@@ -123,6 +137,31 @@ namespace CrazyEightsCosc2200
             game.NextTurn();
             game.UpdateUI();
         }
+
+        // Suit selection handlers.
+        private void SuitChosen(string suit)
+        {
+            game.SetCurrentSuit(suit);
+            SuitScreen.Visibility = Visibility.Collapsed;
+            DarkBackground.Visibility = Visibility.Collapsed;
+
+            // Now continue after Eight was played
+            if (game.realPlayer.hand.HandIsEmpty())
+            {
+                game.AnnounceWinner();
+                return;
+            }
+
+            game.NextTurn();
+            game.UpdateUI();
+        }
+
+        // Click events for each suit in suit screen.
+        public void SuitHearts(object sender, RoutedEventArgs e) => SuitChosen("Hearts");
+        public void SuitDiamonds(object sender, RoutedEventArgs e) => SuitChosen("Diamonds");
+        public void SuitClubs(object sender, RoutedEventArgs e) => SuitChosen("Clubs");
+        public void SuitSpades(object sender, RoutedEventArgs e) => SuitChosen("Spades");
+
 
         // Settings click (toggle visibility of the settings screen).
         public void settingsClick(object sender, RoutedEventArgs e)
