@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -18,20 +19,17 @@ namespace CrazyEightsCosc2200
         private ComputerPlayer computerPlayer;
         public GameState currentState;
 
-        public string OpponentCardCountText
-        {
-            get => $"Cards: {computerPlayer.hand.hand.Count}";
-        }
+        public ObservableCollection<Card> RealPlayerHand => realPlayer.hand.hand;
+        public ObservableCollection<Card> ComputerHand => computerPlayer.hand.hand;
 
-        public string PlayerCardCountText
-        {
-            get => $"Your Cards: {realPlayer.hand.hand.Count}";
-        }
+        public Pile Pile => pile;
+        public int DeckCount => deck.TotalCount;
 
-        public string CurrentStateText
-        {
-            get => $"State: {currentState}";
-        }
+        public string OpponentCardCountText => $"Cards: {computerPlayer.hand.hand.Count}";
+        public string PlayerCardCountText => $"Your Cards: {realPlayer.hand.hand.Count}";
+        public string CurrentStateText => $"State: {currentState}";
+        public string DeckCountText => $"Deck: {deck.TotalCount}";
+
 
         // Constructor
         public GameLogic()
@@ -52,6 +50,7 @@ namespace CrazyEightsCosc2200
             DealCards();
             currentState = GameState.PlayerTurn;
             UpdateUI();
+            OnPropertyChanged(nameof(Pile));
         }
 
         // Reset everything back to a fresh game
@@ -59,9 +58,15 @@ namespace CrazyEightsCosc2200
         {
             deck = new Deck();
             pile = new Pile();
-            realPlayer = new Player("Player");
-            computerPlayer = new ComputerPlayer("AI");
+            realPlayer.hand = new Hand();
+            computerPlayer.hand = new Hand();
+
             StartGame();
+
+            OnPropertyChanged(nameof(RealPlayerHand));
+            OnPropertyChanged(nameof(ComputerHand));
+            OnPropertyChanged(nameof(Pile));
+            OnPropertyChanged(nameof(DeckCountText));
         }
 
         // Deal 5 cards to each player, flip one card to start the pile
@@ -73,19 +78,25 @@ namespace CrazyEightsCosc2200
                 computerPlayer.hand.AddCard(deck.Draw());
             }
 
+            realPlayer.hand.FaceUp();
+
             // Flip one card to start the discard pile
             pile.AddLastCard(deck.Draw());
         }
 
-        // Move to the next turn
+        // Move to the next turn and some computerPlayer logic
         public void NextTurn()
         {
             if (currentState == GameState.PlayerTurn)
             {
                 currentState = GameState.ComputerTurn;
+
+                // Reshuffle if deck is empty before computer plays
+                if (deck.DeckIsEmpty() && pile.pile.Count > 1)
+                    deck.ReshuffleFromPile(pile);
+
                 computerPlayer.PlayCard(pile, deck);
-            
-                // Check if computer won
+
                 if (computerPlayer.hand.HandIsEmpty())
                 {
                     AnnounceWinner();
@@ -126,6 +137,10 @@ namespace CrazyEightsCosc2200
             OnPropertyChanged(nameof(OpponentCardCountText));
             OnPropertyChanged(nameof(PlayerCardCountText));
             OnPropertyChanged(nameof(CurrentStateText));
+            OnPropertyChanged(nameof(RealPlayerHand));
+            OnPropertyChanged(nameof(ComputerHand));
+            OnPropertyChanged(nameof(Pile));
+            OnPropertyChanged(nameof(DeckCountText));
         }
 
         protected void OnPropertyChanged([CallerMemberName] string name = null)

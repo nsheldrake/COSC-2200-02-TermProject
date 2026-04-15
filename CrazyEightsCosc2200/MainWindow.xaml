@@ -14,40 +14,52 @@
         <DockPanel>
         <!-- Top Menu Bar -->
         <DockPanel DockPanel.Dock="Top" Background="#06193B" Height="50">
-            
-            <!-- Left Side: Reset Button -->
-            <Button x:Name="buttonReset"
-                    Content="Reset"
-                    Height="30"
-                    Width="80" Margin="10"                    
-                    Background="#06193B"
-                    Foreground="White"
-                    BorderBrush="#6666BB"
-                    DockPanel.Dock="Left"
-                    Click="resetClick"/>
-            
-            <!-- Right Side: Rules and Settings Buttons -->
-            <StackPanel Orientation="Horizontal"
-                        DockPanel.Dock="Right"
-                        VerticalAlignment="Center"
-                        Margin="8,0">
-                <Button x:Name="buttonRules"
-                        Content="Rules"
-                        Height="30"
-                        Width="80" Margin="6"
-                        Background="#06193B"
-                        Foreground="White"
-                        BorderBrush="#6666BB"
-                        Click="rulesClick"/>
-                <Button x:Name="buttonSettings"
-                        Content="Settings"
-                        Height="30"
-                        Width="80" Margin="0"
-                        Background="#06193B"
-                        Foreground="White"
-                        BorderBrush="#6666BB"
-                        Click="settingsClick"/>
-            </StackPanel>
+
+                <!-- Left Side: Rules and Settings Buttons -->
+                <StackPanel Orientation="Horizontal"
+                            DockPanel.Dock="Left"
+                            VerticalAlignment="Center"
+                            Margin="8,0">
+                    <Button x:Name="buttonRules"
+                            Content="Rules"
+                            Height="30"
+                            Width="80" Margin="6"
+                            Background="#06193B"
+                            Foreground="White"
+                            BorderBrush="#6666BB"
+                            Click="rulesClick"/>
+                    <Button x:Name="buttonSettings"
+                            Content="Settings"
+                            Height="30"
+                            Width="80" Margin="0"
+                            Background="#06193B"
+                            Foreground="White"
+                            BorderBrush="#6666BB"
+                            Click="settingsClick"/>
+                </StackPanel>
+
+                <!-- Right Side: Reset and Exit Buttons -->
+                <StackPanel Orientation="Horizontal"
+                            DockPanel.Dock="Right"
+                            VerticalAlignment="Center"
+                            Margin="8,0">
+                    <Button x:Name="buttonReset"
+                            Content="Reset"
+                            Height="30"
+                            Width="80" Margin="6"
+                            Background="#06193B"
+                            Foreground="White"
+                            BorderBrush="#6666BB"
+                            Click="resetClick"/>
+                    <Button x:Name="buttonExit"
+                            Content="Exit"
+                            Height="30"
+                            Width="80" Margin="0"
+                            Background="#06193B"
+                            Foreground="White"
+                            BorderBrush="#6666BB"
+                            Click="exitClick"/>
+                </StackPanel>
 
             <!-- Center: Game Title -->
             <TextBlock Text="CRAZY 8'S"
@@ -92,20 +104,26 @@
                        Margin="15,0,0,5"/>
             <ScrollViewer HorizontalScrollBarVisibility="Auto"
                           VerticalScrollBarVisibility="Disabled"
-                          Margin="10,0,10,10">
+                          CanContentScroll="True"
+                          Background="Transparent">
                 
-                <!-- Items control for cards and click event binding -->
-                <ItemsControl ItemsSource="{Binding realPlayer.hand.hand}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Button DataContext="{Binding}" Click="CardClick">
-                                <Image Source="{Binding FaceImage}"/>
-                            </Button>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                    <!-- Items control for cards and click event binding -->
+                    <ItemsControl ItemsSource="{Binding RealPlayerHand}" HorizontalAlignment="Center">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button DataContext="{Binding}" Click="CardClick" Width="100" Height="150" Background="Transparent">
+                                    <Image Source="{Binding FaceImage}" Width="100" Height="150" Stretch="Fill"/>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
 
-            </ScrollViewer>
+                </ScrollViewer>
         </StackPanel>
 
         <!-- Middle: Deck / Pile -->
@@ -115,6 +133,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
+            
             <!-- Computer Area -->
             <StackPanel Grid.Row="0"
                         HorizontalAlignment="Center"
@@ -125,25 +144,64 @@
                            FontWeight="Bold"
                            HorizontalAlignment="Center"
                            Margin="0,0,0,8"/>
-                <ItemsControl x:Name="computerHand">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                </ItemsControl>
+                    <ItemsControl ItemsSource="{Binding ComputerHand}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
 
-                <TextBlock Text="{Binding OpponentCardCountText}"
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding BackImage}" Width="60"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <TextBlock Text="{Binding OpponentCardCountText}"
                            Foreground="White"
                            FontSize="14"
                            HorizontalAlignment="Center"
                            Margin="0,8,0,0"/>   
             </StackPanel>
 
-           
+                <!-- Deck -->
+                <StackPanel Grid.Row="1"
+                    HorizontalAlignment="Left"
+                    Margin="250,0,0,0"
+                    VerticalAlignment="Center">
+
+                    <TextBlock Text="Deck"
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,5"/>
+
+                    <Image Source="/Images/card_back.png"
+                       Width="100"
+                       Height="150"/>
+
+                    <TextBlock Text="{Binding DeckCountText}"
+                       Foreground="White"
+                       HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Pile -->
+                <StackPanel Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+
+                    <TextBlock Text="Discard Pile"
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,5"/>
+
+                    <Image Source="{Binding Pile.TopCard.FaceImage}"
+                       Width="100"
+                       Height="150"/>
+                </StackPanel>
 
 
-                </Grid>
+            </Grid>
             </DockPanel>
             <!-- Dark Background -->
             <Grid x:Name="DarkBackground"
@@ -310,7 +368,7 @@
                 2. The remaining cards form the draw pile.<LineBreak/>
                 3. The top card starts the discard pile.<LineBreak/>
                 4. Match suit or rank to play a card.<LineBreak/>
-                5. Eights are wild — choose a suit.<LineBreak/>
+                5. Eights are wild, you can choose a suit.<LineBreak/>
                 6. If you cannot play, draw a card.<LineBreak/>
                 7. First player with no cards wins!
             </TextBlock>

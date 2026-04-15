@@ -33,7 +33,7 @@ namespace CrazyEightsCosc2200
 
         // Click event handlers.
 
-        // When player clicks a card in their hand
+        // When player clicks a card in their hand.
         public void CardClick(object sender, RoutedEventArgs e)
         {
             Button clickedCard = sender as Button;
@@ -73,12 +73,14 @@ namespace CrazyEightsCosc2200
                 return;
             }
 
-            if (!game.deck.DeckIsEmpty())
+            if (game.deck.DeckIsEmpty())
             {
-                game.realPlayer.DrawCard(game.deck);
-                game.NextTurn();
-                game.UpdateUI();
+                game.deck.ReshuffleFromPile(game.pile);
             }
+
+            game.realPlayer.DrawCard(game.deck);
+            game.NextTurn();
+            game.UpdateUI();
 
         }
 
@@ -122,7 +124,7 @@ namespace CrazyEightsCosc2200
             game.UpdateUI();
         }
 
-        // Settings click. (toggle visibility of the settings screen)
+        // Settings click (toggle visibility of the settings screen).
         public void settingsClick(object sender, RoutedEventArgs e)
         {
             if (SettingsScreen.Visibility == Visibility.Visible)
@@ -138,7 +140,7 @@ namespace CrazyEightsCosc2200
         }
         
 
-        // Save settings click — inside the settings panel
+        // Save settings click — inside the settings panel.
         public void SaveSettingsClick(object sender, RoutedEventArgs e)
         {
             if (BackgroundColorPicker.SelectedItem is ComboBoxItem selectedBackgroundColor)
@@ -154,7 +156,7 @@ namespace CrazyEightsCosc2200
             DarkBackground.Visibility = Visibility.Collapsed;
         }
 
-        // Exit settings click 
+        // Exit settings click. 
         public void ExitSettingsClick(object sender, RoutedEventArgs e)
         {
             // Hide settings panel
@@ -162,6 +164,12 @@ namespace CrazyEightsCosc2200
 
             // Hide dark overlay
             DarkBackground.Visibility = Visibility.Collapsed;
+        }
+
+        // Exit program click.
+        public void exitClick(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -12,8 +12,8 @@ namespace CrazyEightsCosc2200
         public Suit suit;
         public Rank rank;
         public bool isFaceUp;
-        public string FaceImage;
-        public string BackImage;
+        public string FaceImage {  get; set; }
+        public string BackImage { get; set; }
 
         // Public getters for properties
         public Suit Suit { get { return suit; } }
@@ -29,8 +29,8 @@ namespace CrazyEightsCosc2200
             // Find each cards image via the suit and rank
             string rankName = rank.ToString().ToLower();
             string suitName = suit.ToString().ToLower();
-            FaceImage = $"images/{suitName}_of_{rankName}.png";
-            BackImage = "images/card_back.png";
+            FaceImage = $"/Images/card_{suitName}_{rankName}.png";
+            BackImage = "/Images/card_back.png";
         }
 
         // Flips the card face up

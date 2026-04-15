@@ -20,6 +20,9 @@ namespace CrazyEightsCosc2200
             InitializeDeck();
         }
 
+        // To check deck count
+        public int TotalCount => deck.Count;
+
         private void InitializeDeck()
         {
             foreach (Suit suit in Enum.GetValues(typeof(Suit)))
@@ -31,7 +34,7 @@ namespace CrazyEightsCosc2200
             }
         }
 
-        // Replace all cards in the deck randomly when it runs out of cards
+        // Shuffle all cards in the deck randomly when it runs out of cards
         public void Shuffle()
         {
             // Fisher Yates Shuffle
@@ -46,6 +49,24 @@ namespace CrazyEightsCosc2200
                 deck[k] = deck[n];
                 deck[n] = temp;
             }
+        }
+
+        // When deck is empty automatically shuffle all cards except top card in pile
+        public void ReshuffleFromPile(Pile pile)
+        {
+            // Keep the top card, reshuffle the rest back into the deck
+            Card topCard = pile.TopCard;
+
+            // Take all pile cards except the top one back into the deck
+            var reshuffleCards = pile.pile.Where(card => card != topCard).ToList();
+            foreach (Card card in reshuffleCards)
+            {
+                card.FaceDown();
+                deck.Add(card);
+                pile.pile.Remove(card);
+            }
+
+            Shuffle();
         }
 
         // Take a card from the deck
