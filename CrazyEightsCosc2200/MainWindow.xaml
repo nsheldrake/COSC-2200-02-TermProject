@@ -13,7 +13,7 @@
     <Grid>
         <DockPanel>
         <!-- Top Menu Bar -->
-        <DockPanel DockPanel.Dock="Top" Background="#06193B" Height="50">
+        <DockPanel x:Name="GameTopMenu" DockPanel.Dock="Top" Background="#06193B" Height="50">
 
                 <!-- Left Side: Rules and Settings Buttons -->
                 <StackPanel Orientation="Horizontal"
@@ -71,7 +71,7 @@
         </DockPanel>
 
         <!-- Bottom: Draw / Play & Hand -->
-        <StackPanel DockPanel.Dock="Bottom" Background="#06193B">
+        <StackPanel x:Name="GameBottomMenu" DockPanel.Dock="Bottom" Background="#06193B">
             
             <!-- Draw and Play Buttons -->
             <StackPanel Orientation="Horizontal"
@@ -127,7 +127,7 @@
         </StackPanel>
 
         <!-- Middle: Deck / Pile -->
-        <Grid Background="#0E2B06">
+        <Grid x:Name="GameBackground" Background="#0E2B06">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -205,194 +205,268 @@
             </DockPanel>
             <!-- Dark Background -->
             <Grid x:Name="DarkBackground"
-              Background="#CC000000"
+              Background="#E6000000"
               Visibility="Collapsed"
               Panel.ZIndex="1"/>
 
-            <!-- Settings Screen -->
-            <StackPanel x:Name="SettingsScreen" Visibility="Collapsed" Margin="20,60,20,20" Panel.ZIndex="2">
+        <!-- Settings Screen -->
+        <Grid x:Name="SettingsScreen"
+              Visibility="Collapsed"
+              Panel.ZIndex="2">
 
-                <TextBlock Text="Background Color" FontWeight="Bold" Margin="0,0,0,5" Foreground="White"/>
-                <ComboBox x:Name="BackgroundColorPicker" Margin="0,0,0,15">
+            <Border Width="700"
+                    Height="500"
+                    Background="#DD2D2D2D"
+                    CornerRadius="15"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Padding="25"
+                    BorderBrush="White"
+                    BorderThickness="1">
 
-                    <!-- Red -->
-                    <ComboBoxItem Tag="#FF0000">
-                        <StackPanel Orientation="Horizontal">
-                            <Rectangle Width="20" Height="20" Fill="#FF0000" Margin="0,0,8,0"/>
-                            <TextBlock Text="#FF0000 (Red)"/>
-                        </StackPanel>
-                    </ComboBoxItem>
+                <StackPanel HorizontalAlignment="Center">
 
-                    <!-- Orange -->
-                    <ComboBoxItem Tag="#FF7F00">
-                        <StackPanel Orientation="Horizontal">
-                            <Rectangle Width="20" Height="20" Fill="#FF7F00" Margin="0,0,8,0"/>
-                            <TextBlock Text="#FF7F00 (Orange)"/>
-                        </StackPanel>
-                    </ComboBoxItem>
+                    <!-- Title -->
+                    <TextBlock Text="Settings"
+                               FontSize="30"
+                               FontWeight="Bold"
+                               Foreground="White"
+                               Margin="0,0,0,20"
+                               HorizontalAlignment="Center"/>
 
-                    <!-- Yellow -->
-                    <ComboBoxItem Tag="#FFFF00">
-                        <StackPanel Orientation="Horizontal">
-                            <Rectangle Width="20" Height="20" Fill="#FFFF00" Margin="0,0,8,0"/>
-                            <TextBlock Text="#FFFF00 (Yellow)"/>
-                        </StackPanel>
-                    </ComboBoxItem>
+                    <!-- Background Color -->
+                    <TextBlock Text="Background Color"
+                               FontWeight="Bold"
+                               Foreground="White"
+                               Margin="0,0,0,5"/>
 
-                    <!-- Green -->
-                    <ComboBoxItem Tag="#00FF00">
-                        <StackPanel Orientation="Horizontal">
-                            <Rectangle Width="20" Height="20" Fill="#00FF00" Margin="0,0,8,0"/>
-                            <TextBlock Text="#00FF00 (Green)"/>
-                        </StackPanel>
-                    </ComboBoxItem>
+                    <ComboBox x:Name="BackgroundColorPicker"
+                              Width="300"
+                              Height="35"
+                              Margin="0,0,0,20">
 
-                    <!-- Blue -->
-                    <ComboBoxItem Tag="#0000FF">
-                        <StackPanel Orientation="Horizontal">
-                            <Rectangle Width="20" Height="20" Fill="#0000FF" Margin="0,0,8,0"/>
-                            <TextBlock Text="#0000FF (Blue)"/>
-                        </StackPanel>
-                    </ComboBoxItem>
+                        <!-- Default -->
+                        <ComboBoxItem Tag="#0E2B06">
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="18" Height="18" Fill="#0E2B06" Margin="0,0,8,0"/>
+                                <TextBlock Text="#0E2B06 (Default)" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ComboBoxItem>
 
-                    <!-- Indigo -->
-                    <ComboBoxItem Tag="#4B0082">
-                        <StackPanel Orientation="Horizontal">
-                            <Rectangle Width="20" Height="20" Fill="#4B0082" Margin="0,0,8,0"/>
-                            <TextBlock Text="#4B0082 (Indigo)"/>
-                        </StackPanel>
-                    </ComboBoxItem>
+                        <!-- Red -->
+                        <ComboBoxItem Tag="#FF0000">
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="18" Height="18" Fill="#FF0000" Margin="0,0,8,0"/>
+                                <TextBlock Text="#FF0000 (Red)" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ComboBoxItem>
 
-                    <!-- Violet -->
-                    <ComboBoxItem Tag="#8F00FF">
-                        <StackPanel Orientation="Horizontal">
-                            <Rectangle Width="20" Height="20" Fill="#8F00FF" Margin="0,0,8,0"/>
-                            <TextBlock Text="#8F00FF (Violet)"/>
-                        </StackPanel>
-                    </ComboBoxItem>
+                        <!-- Orange -->
+                        <ComboBoxItem Tag="#FF7F00">
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="18" Height="18" Fill="#FF7F00" Margin="0,0,8,0"/>
+                                <TextBlock Text="#FF7F00 (Orange)" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ComboBoxItem>
 
-                </ComboBox>
+                        <!-- Yellow -->
+                        <ComboBoxItem Tag="#FFFF00">
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="18" Height="18" Fill="#FFFF00" Margin="0,0,8,0"/>
+                                <TextBlock Text="#FFFF00 (Yellow)" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ComboBoxItem>
 
-                <TextBlock Text="Menu Color" FontWeight="Bold" Margin="0,0,0,5" Foreground="White"/>
-                <ComboBox x:Name="MenuColorPicker" Margin="0,0,0,15">
+                        <!-- Green -->
+                        <ComboBoxItem Tag="#00FF00">
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="18" Height="18" Fill="#00FF00" Margin="0,0,8,0"/>
+                                <TextBlock Text="#00FF00 (Green)" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ComboBoxItem>
 
-                    <!-- Same items reused -->
-                    <ComboBoxItem Tag="#FF0000">
-                        <StackPanel Orientation="Horizontal">
-                            <Rectangle Width="20" Height="20" Fill="#FF0000" Margin="0,0,8,0"/>
-                            <TextBlock Text="#FF0000 (Red)"/>
-                        </StackPanel>
-                    </ComboBoxItem>
+                        <!-- Blue -->
+                        <ComboBoxItem Tag="#0000FF">
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="18" Height="18" Fill="#0000FF" Margin="0,0,8,0"/>
+                                <TextBlock Text="#0000FF (Blue)" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ComboBoxItem>
 
-                    <ComboBoxItem Tag="#FF7F00">
-                        <StackPanel Orientation="Horizontal">
-                            <Rectangle Width="20" Height="20" Fill="#FF7F00" Margin="0,0,8,0"/>
-                            <TextBlock Text="#FF7F00 (Orange)"/>
-                        </StackPanel>
-                    </ComboBoxItem>
+                        <!-- Indigo -->
+                        <ComboBoxItem Tag="#4B0082">
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="18" Height="18" Fill="#4B0082" Margin="0,0,8,0"/>
+                                <TextBlock Text="#4B0082 (Indigo)" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ComboBoxItem>
 
-                    <ComboBoxItem Tag="#FFFF00">
-                        <StackPanel Orientation="Horizontal">
-                            <Rectangle Width="20" Height="20" Fill="#FFFF00" Margin="0,0,8,0"/>
-                            <TextBlock Text="#FFFF00 (Yellow)"/>
-                        </StackPanel>
-                    </ComboBoxItem>
+                        <!-- Violet -->
+                        <ComboBoxItem Tag="#8F00FF">
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="18" Height="18" Fill="#8F00FF" Margin="0,0,8,0"/>
+                                <TextBlock Text="#8F00FF (Violet)" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ComboBoxItem>
 
-                    <ComboBoxItem Tag="#00FF00">
-                        <StackPanel Orientation="Horizontal">
-                            <Rectangle Width="20" Height="20" Fill="#00FF00" Margin="0,0,8,0"/>
-                            <TextBlock Text="#00FF00 (Green)"/>
-                        </StackPanel>
-                    </ComboBoxItem>
+                    </ComboBox>
 
-                    <ComboBoxItem Tag="#0000FF">
-                        <StackPanel Orientation="Horizontal">
-                            <Rectangle Width="20" Height="20" Fill="#0000FF" Margin="0,0,8,0"/>
-                            <TextBlock Text="#0000FF (Blue)"/>
-                        </StackPanel>
-                    </ComboBoxItem>
+                    <!-- Menu Color -->
+                    <TextBlock Text="Menu Color"
+                               FontWeight="Bold"
+                               Foreground="White"
+                               Margin="0,0,0,5"/>
 
-                    <ComboBoxItem Tag="#4B0082">
-                        <StackPanel Orientation="Horizontal">
-                            <Rectangle Width="20" Height="20" Fill="#4B0082" Margin="0,0,8,0"/>
-                            <TextBlock Text="#4B0082 (Indigo)"/>
-                        </StackPanel>
-                    </ComboBoxItem>
+                    <ComboBox x:Name="MenuColorPicker"
+                              Width="300"
+                              Height="35"
+                              Margin="0,0,0,25">
 
-                    <ComboBoxItem Tag="#8F00FF">
-                        <StackPanel Orientation="Horizontal">
-                            <Rectangle Width="20" Height="20" Fill="#8F00FF" Margin="0,0,8,0"/>
-                            <TextBlock Text="#8F00FF (Violet)"/>
-                        </StackPanel>
-                    </ComboBoxItem>
+                        <!-- Default -->
+                        <ComboBoxItem Tag="#06193B">
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="18" Height="18" Fill="#06193B" Margin="0,0,8,0"/>
+                                <TextBlock Text="#06193B (Default)" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ComboBoxItem>
 
-                </ComboBox>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                        <!-- Red -->
+                        <ComboBoxItem Tag="#FF0000">
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="18" Height="18" Fill="#FF0000" Margin="0,0,8,0"/>
+                                <TextBlock Text="#FF0000 (Red)" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ComboBoxItem>
+
+                        <!-- Orange -->
+                        <ComboBoxItem Tag="#FF7F00">
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="18" Height="18" Fill="#FF7F00" Margin="0,0,8,0"/>
+                                <TextBlock Text="#FF7F00 (Orange)" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ComboBoxItem>
+
+                        <!-- Yellow -->
+                        <ComboBoxItem Tag="#FFFF00">
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="18" Height="18" Fill="#FFFF00" Margin="0,0,8,0"/>
+                                <TextBlock Text="#FFFF00 (Yellow)" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ComboBoxItem>
+
+                        <!-- Green -->
+                        <ComboBoxItem Tag="#00FF00">
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="18" Height="18" Fill="#00FF00" Margin="0,0,8,0"/>
+                                <TextBlock Text="#00FF00 (Green)" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ComboBoxItem>
+
+                        <!-- Blue -->
+                        <ComboBoxItem Tag="#0000FF">
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="18" Height="18" Fill="#0000FF" Margin="0,0,8,0"/>
+                                <TextBlock Text="#0000FF (Blue)" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ComboBoxItem>
+
+                        <!-- Indigo -->
+                        <ComboBoxItem Tag="#4B0082">
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="18" Height="18" Fill="#4B0082" Margin="0,0,8,0"/>
+                                <TextBlock Text="#4B0082 (Indigo)" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ComboBoxItem>
+
+                        <!-- Violet -->
+                        <ComboBoxItem Tag="#8F00FF">
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="18" Height="18" Fill="#8F00FF" Margin="0,0,8,0"/>
+                                <TextBlock Text="#8F00FF (Violet)" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ComboBoxItem>
+
+                    </ComboBox>
+
+                    <!-- Buttons -->
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center">
 
                         <Button Content="Save"
-                            Width="100"
-                            HorizontalAlignment="Left"
-                            Grid.Column="1"
-                            Click="SaveSettingsClick"/>
+                                Width="120"
+                                Margin="10,0"
+                                Click="SaveSettingsClick"/>
 
                         <Button Content="Exit"
-                            Width="100"
-                            HorizontalAlignment="Right"
-                            Grid.Column="2"
-                            Click="ExitSettingsClick"/>
-                    </Grid>
+                                Width="120"
+                                Margin="10,0"
+                                Click="ExitSettingsClick"/>
+                    </StackPanel>
 
-        </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
 
-        <StackPanel x:Name="RulesScreen"
-                Visibility="Collapsed"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Panel.ZIndex="2">
+        <Grid x:Name="RulesScreen"
+              Visibility="Collapsed"
+              Panel.ZIndex="2">
 
-            <TextBlock Text="How to Play Crazy Eights"
-               FontSize="25"
-               FontWeight="Bold"
-               Margin="0,0,0,10"
-               Foreground="White"/>
+            <Border Width="700"
+                    Height="450"
+                    Background="#DD2D2D2D"
+                    CornerRadius="15"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Padding="20"
+                    BorderBrush="White"
+                    BorderThickness="1">
 
-            <TextBlock TextWrapping="Wrap" Foreground="White" FontSize="25">
-                <LineBreak/>
-                1. Each player is dealt 5 cards.<LineBreak/>
-                2. The remaining cards form the draw pile.<LineBreak/>
-                3. The top card starts the discard pile.<LineBreak/>
-                4. Match suit or rank to play a card.<LineBreak/>
-                5. Eights are wild, you can choose a suit.<LineBreak/>
-                6. If you cannot play, draw a card.<LineBreak/>
-                7. First player with no cards wins!
-            </TextBlock>
+                <StackPanel>
 
-            <Button Content="Close"
-                Width="100"
-                HorizontalAlignment="Center"
-                Margin="0,20,0,0"
-                Click="CloseRulesClick"/>
-        </StackPanel>
+                    <TextBlock Text="How to Play Crazy Eights"
+                               FontSize="30"
+                               FontWeight="Bold"
+                               Margin="0,0,0,15"
+                               Foreground="White"
+                               HorizontalAlignment="Center"/>
+
+                    <TextBlock TextWrapping="Wrap"
+                               Foreground="White"
+                               FontSize="22"
+                               HorizontalAlignment="Center">
+
+                                1. Each player is dealt 5 cards.<LineBreak/>
+                                2. The remaining cards form the draw pile.<LineBreak/>
+                                3. The top card starts the discard pile.<LineBreak/>
+                                4. Match suit or rank to play a card.<LineBreak/>
+                                5. Eights are wild, you can choose a suit.<LineBreak/>
+                                6. If you cannot play, draw a card.<LineBreak/>
+                                7. First player with no cards wins!
+                    </TextBlock>
+
+                    <Button Content="Close"
+                            Width="120"
+                            Margin="0,20,0,0"
+                            HorizontalAlignment="Center"
+                            Click="CloseRulesClick"/>
+
+                </StackPanel>
+            </Border>
+        </Grid>
 
         <!-- Suit Selection Screen -->
         <StackPanel x:Name="SuitScreen"
-            Visibility="Collapsed"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Panel.ZIndex="2">
+                    Visibility="Collapsed"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Panel.ZIndex="2">
 
             <TextBlock Text="You played an Eight! Choose a suit:"
-               FontSize="20"
-               FontWeight="Bold"
-               Foreground="White"
-               HorizontalAlignment="Center"
-               Margin="0,0,0,20"/>
+                       FontSize="20"
+                       FontWeight="Bold"
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,20"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Content="Hearts"

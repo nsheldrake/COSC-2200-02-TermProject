@@ -11,6 +11,7 @@ namespace CrazyEightsCosc2200
         public string Name { get; set; }
         public Hand hand { get; set; }
 
+        // Constructor.
         public Player(string name)
         {
             Name = name;

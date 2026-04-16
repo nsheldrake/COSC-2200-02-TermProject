@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml;
 
 namespace CrazyEightsCosc2200
 {
@@ -26,6 +27,8 @@ namespace CrazyEightsCosc2200
 
             game = new GameLogic();        //  Create object
             this.DataContext = game;       //  Connect UI to GameLogic
+
+            ApplySettings();
         }
 
 
@@ -246,6 +249,23 @@ namespace CrazyEightsCosc2200
                 DarkBackground.Visibility = Visibility.Visible;
             }
         }
+
+        // Apply settings click (when user saves settings - apply them live)
+        public void ApplySettings()
+        {
+            // Convert hex string → Brush
+            var BackgroundBrush = (Brush)new BrushConverter().ConvertFromString(settings.BackgroundColor);
+            var MenuBrush = (Brush)new BrushConverter().ConvertFromString(settings.MenuColor);
+
+            // Apply colors
+            GameBackground.Background = BackgroundBrush;
+            GameTopMenu.Background = MenuBrush;
+            GameBottomMenu.Background = MenuBrush;
+            buttonRules.Background = MenuBrush;
+            buttonSettings.Background = MenuBrush;
+            buttonReset.Background = MenuBrush;
+            buttonExit.Background = MenuBrush;
+        }
         
 
         // Save settings click — inside the settings panel.
@@ -258,7 +278,7 @@ namespace CrazyEightsCosc2200
                 settings.MenuColor = selectedMenuColor.Tag.ToString();
 
             settings.SaveSettings();
-            MessageBox.Show("Settings saved!", "Settings", MessageBoxButton.OK, MessageBoxImage.Information);
+            ApplySettings();
 
             SettingsScreen.Visibility = Visibility.Collapsed;
             DarkBackground.Visibility = Visibility.Collapsed;

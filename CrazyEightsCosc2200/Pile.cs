@@ -33,7 +33,7 @@ namespace CrazyEightsCosc2200
             }
         }
 
-        //
+        // Get last played card for move validation.
         public Card LastCard()
         {
             return pile.Last();
