@@ -8,18 +8,18 @@ namespace CrazyEightsCosc2200
 {
     public class Card
     {
-        // Properties
+        // Properties.
         public Suit suit;
         public Rank rank;
         public bool isFaceUp;
         public string FaceImage {  get; set; }
         public string BackImage { get; set; }
 
-        // Public getters for properties
+        // Public getters for properties.
         public Suit Suit { get { return suit; } }
         public Rank Rank { get { return rank; } }
 
-        // Constructor
+        // Constructor.
         public Card(Suit suit, Rank rank)
         {
             this.suit = suit;
@@ -33,14 +33,14 @@ namespace CrazyEightsCosc2200
             BackImage = "/Images/card_back.png";
         }
 
-        // Flips the card face up
+        // Flips the card face up.
         public void FaceUp()
         {
             isFaceUp = true;
             // Display the cards face
         }
 
-        // Flips the card face down
+        // Flips the card face down.
         public void FaceDown()
         {
             isFaceUp = false;

@@ -8,7 +8,7 @@ namespace CrazyEightsCosc2200
 {
     public class GameRules
     {
-        // Check if a move is valid
+        // Check if a move is valid.
         public bool IsMoveValid(Card playedCard, Card topCard, string currentSuit)
         {
             // Rule 1: same suit
@@ -27,22 +27,17 @@ namespace CrazyEightsCosc2200
             if (IsCardEight(playedCard))
                 return true;
 
+            // Else move is invalid
             return false;
         }
 
-        // Check if card is 8
+        // Check if card is an 8.
         public bool IsCardEight(Card card)
         {
             return card.Rank == Rank.Eight;
         }
 
-        // Change suit when 8 is played
-        //public string ChangeSuit(Card card)
-        //{
-            
-        //}
-
-        // Check if player wins
+        // Check if player wins.
         public bool IsWinner(Player player)
         {
             return player.hand.HandIsEmpty();

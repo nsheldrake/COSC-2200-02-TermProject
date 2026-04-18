@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 
 namespace CrazyEightsCosc2200
 {
+    // INotifyPropertyChanged so changes update live in UI.
     internal class GameLogic : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
+        // Properties.
         public Deck deck;
         public Pile pile;
         public Player realPlayer;
@@ -20,21 +22,30 @@ namespace CrazyEightsCosc2200
         public GameState currentState;
         public string currentSuit = "";
 
+        // Get GameRules.
         public GameRules rules = new GameRules();
 
+        // Find users hand for UI binding.
         public ObservableCollection<Card> RealPlayerHand => realPlayer.hand.hand;
+        // Find computers hand for UI binding.
         public ObservableCollection<Card> ComputerHand => computerPlayer.hand.hand;
 
+        // Find the new / current pile object.
         public Pile Pile => pile;
+        // Find the number of cards remaining in the deck to display in UI.
         public int DeckCount => deck.TotalCount;
 
+        // Find the amount of cards in the computers hand.
         public string OpponentCardCountText => $"Cards: {computerPlayer.hand.hand.Count}";
+        // Find the amount of cards in the users hand.
         public string PlayerCardCountText => $"Your Cards: {realPlayer.hand.hand.Count}";
+        // Find the current state.
         public string CurrentStateText => $"State: {currentState}";
+        // Display the amount of cards left in the deck in the UI.
         public string DeckCountText => $"Deck: {deck.TotalCount}";
 
 
-        // Constructor
+        // Constructor.
         public GameLogic()
         {
             deck = new Deck();
@@ -42,10 +53,11 @@ namespace CrazyEightsCosc2200
             realPlayer = new Player("Player");
             computerPlayer = new ComputerPlayer("AI");
             currentState = GameState.StartGame;
-
+            // When program starts, start a new game
             StartGame();
         }
 
+        // Used to start new games.
         public void StartGame()
         {
             deck.Shuffle();
@@ -56,31 +68,38 @@ namespace CrazyEightsCosc2200
             OnPropertyChanged(nameof(Pile));
         }
 
-        // Reset everything back to a fresh game
+        // Reset everything back to a fresh game.
         public void ResetGame()
         {
+            // Create new deck, pile, and hands
             deck = new Deck();
             pile = new Pile();
             realPlayer.hand = new Hand();
             computerPlayer.hand = new Hand();
 
+            // Start new game
             StartGame();
 
+            // Update UI components
             OnPropertyChanged(nameof(RealPlayerHand));
             OnPropertyChanged(nameof(ComputerHand));
             OnPropertyChanged(nameof(Pile));
             OnPropertyChanged(nameof(DeckCountText));
         }
 
-        // Deal 5 cards to each player, flip one card to start the pile
+        // Deal 5 cards to each player, flip one card to start the pile.
         public void DealCards()
         {
+            // Take 5 cards from deck
             for (int i = 0; i < 5; i++)
             {
+                // Add 5 cards to players hand
                 realPlayer.hand.AddCard(deck.Draw());
+                // Add 5 cards to computers hand
                 computerPlayer.hand.AddCard(deck.Draw());
             }
 
+            // Set users hand face up so they can see their cards
             realPlayer.hand.FaceUp();
 
             // Flip one card to start the discard pile
@@ -93,59 +112,62 @@ namespace CrazyEightsCosc2200
             currentSuit = suit;
         }
 
-        // Move to the next turn and some computerPlayer logic
+        // Move to the next turn and some computerPlayer logic.
         public void NextTurn()
         {
+            // If currentState = PlayerTurn
             if (currentState == GameState.PlayerTurn)
             {
+                // Switch to ComputerTurn
                 currentState = GameState.ComputerTurn;
 
                 // Reshuffle if deck is empty before computer plays
                 if (deck.DeckIsEmpty() && pile.pile.Count > 1)
                     deck.ReshuffleFromPile(pile);
 
+                // Make computer play a card
                 computerPlayer.PlayCard(pile, deck, currentSuit);
 
                 // Clear suit after computer plays
                 currentSuit = "";
 
-                //if (computerPlayer.hand.HandIsEmpty())
-                //{
-                //    AnnounceWinner();
-                //    return;
-                //}
-
+                // Set state back to PlayerTurn
                 currentState = GameState.PlayerTurn;
             }
 
+            // Update UI
             UpdateUI();
         }
 
-        // Announce the winner
+        // Announce the winner.
         public Player AnnounceWinner()
         {
+            // If players hand is empty
             if (realPlayer.hand.HandIsEmpty())
-                //System.Windows.MessageBox.Show("You win!", "Game Over", System.Windows.MessageBoxButton.OK);
+                // Return player
                 return realPlayer;
+            // If computers hand is empty
             else if (computerPlayer.hand.HandIsEmpty())
-                //System.Windows.MessageBox.Show("Computer wins!", "Game Over", System.Windows.MessageBoxButton.OK);
+                // Return computer
                 return computerPlayer;
 
+            // Else return null
             return null;
         }
 
-        // Called when a move is not valid
+        // Called when a move is not valid.
         public void InvalidMove()
         {
             System.Windows.MessageBox.Show("Invalid move! Card must match suit or rank.", "Invalid Move", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
         }
 
-        // Called when a turn is not valid
+        // Called when a turn is not valid.
         public void InvalidTurn()
         {
             System.Windows.MessageBox.Show("It's not your turn!", "Invalid Turn", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
         }
 
+        // Update UI components live.
         public void UpdateUI()
         {
             OnPropertyChanged(nameof(OpponentCardCountText));
@@ -157,6 +179,7 @@ namespace CrazyEightsCosc2200
             OnPropertyChanged(nameof(DeckCountText));
         }
 
+        // Sends the OnPropertyChanged event to notify UI elements when a property has changed.
         protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));

@@ -8,27 +8,30 @@ using System.Threading.Tasks;
 
 namespace CrazyEightsCosc2200
 {
+    // INotifyPropertyChanged so pile updates live in UI.
     public class Pile : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        // Observable so the UI updates automatically when cards change
+        // Observable so the UI updates automatically when cards change.
         public ObservableCollection<Card> pile { get; private set; }
 
-        // Constructor
+        // Constructor.
         public Pile()
         {
             pile = new ObservableCollection<Card>();
+            // Call PropertyChangedEventHandler so the pile updates in the UI when changes are made (Specifically the top card).
             pile.CollectionChanged += (s, e) =>
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TopCard)));
         }
 
-        // Returns the last card of the pile (most recently played)
-        // Used to check the cards rank and suit to check if the next move is valid
+        // Returns the last card of the pile (most recently played).
+        // Used to check the cards rank and suit to check if the next move is valid.
         public Card? TopCard
         {
             get
             {
+                // Return the last card in the pile if its not empty, else return null
                 return pile.Count > 0 ? pile[^1] : null;
             }
         }
@@ -39,15 +42,15 @@ namespace CrazyEightsCosc2200
             return pile.Last();
         }
 
-        // Adds a card onto the top of the pile
-        // Used when a player plays a card
+        // Adds a card onto the top of the pile.
+        // Used when a player plays a card.
         public void AddLastCard(Card card)
         {
             pile.Add(card);
             card.FaceUp();
         }
 
-        // All the cards in the pile are face up so you know what suit and rank to follow
+        // All the cards in the pile are face up so you know what suit and rank to follow.
         public void FaceUp()
         {
             foreach (Card card in pile)
@@ -56,9 +59,10 @@ namespace CrazyEightsCosc2200
             }
         }
 
-        // Empty pile for resetting game
+        // Empty pile for resetting game.
         public void EmptyPile()
         {
+            // Clear pile when new game starts
             pile.Clear();
         }
     }

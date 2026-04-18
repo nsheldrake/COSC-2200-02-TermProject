@@ -17,6 +17,7 @@ namespace CrazyEightsCosc2200
     /// </summary>
     public partial class MainWindow : Window
     {
+        // Properties.
         private GameLogic game;
         private Card selectedCard = null;
         private Settings settings = new Settings();
@@ -28,6 +29,7 @@ namespace CrazyEightsCosc2200
             game = new GameLogic();        //  Create object
             this.DataContext = game;       //  Connect UI to GameLogic
 
+            // Apply saved settings upon startup
             ApplySettings();
         }
 
@@ -39,9 +41,12 @@ namespace CrazyEightsCosc2200
         // When player clicks a card in their hand.
         public void CardClick(object sender, RoutedEventArgs e)
         {
+            //
             Button clickedCard = sender as Button;
+            // If a card has been clicked
             if (clickedCard != null)
             {
+                // Select the card
                 selectedCard = clickedCard.DataContext as Card;
             }
         }
@@ -49,13 +54,16 @@ namespace CrazyEightsCosc2200
         // Reset game click.
         public void resetClick(object sender, RoutedEventArgs e)
         {
+            // Call ResetGame() from GameLogic
             game.ResetGame();   
         }
 
         // Rules click.
         public void rulesClick(object sender, RoutedEventArgs e)
         {
+            // Set RulesScreen to visible
             RulesScreen.Visibility = Visibility.Visible;
+            // Set DarkBackground to visible
             DarkBackground.Visibility = Visibility.Visible;
 
         }
@@ -63,33 +71,46 @@ namespace CrazyEightsCosc2200
         // Close rules click.
         public void CloseRulesClick(object sender, RoutedEventArgs e)
         {
+            // Set RulesScreen to invisible
             RulesScreen.Visibility = Visibility.Collapsed;
+            // Set DarkBackground to invisible
             DarkBackground.Visibility = Visibility.Collapsed;
         }
 
         // Draw click.
         public void drawClick(object sender, RoutedEventArgs e)
         {
+            // If its the computers turn
             if (game.currentState != GameState.PlayerTurn)
             {
+                // Display an invalid turn message to user
                 game.InvalidTurn();
                 return;
             }
 
+            // If deck is empty
             if (game.deck.DeckIsEmpty())
             {
+                // Reshuffle the pile
                 game.deck.ReshuffleFromPile(game.pile);
             }
 
+            // Draw a card from the deck and give it to the players hand
             game.realPlayer.DrawCard(game.deck);
+
+            // Change to computers turn
             game.NextTurn();
+
             // After computer plays check for winner
             Player winner = game.AnnounceWinner();
+            // If theres a winner
             if (winner != null)
             {
+                // Display the winner screen
                 ShowWinnerScreen(winner);
                 return;
             }
+            // Update UI
             game.UpdateUI();
 
         }
@@ -100,6 +121,7 @@ namespace CrazyEightsCosc2200
             // Make sure a card is selected
             if (selectedCard == null)
             {
+                // Display a message to user, telling them to select a card
                 MessageBox.Show("Please select a card first!", "No Card Selected", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
@@ -107,13 +129,15 @@ namespace CrazyEightsCosc2200
             // Make sure it's the player's turn
             if (game.currentState != GameState.PlayerTurn)
             {
+                // If not than display invalidturn message to user
                 game.InvalidTurn();
                 return;
             }
 
-            // Check if the move is valid suit
+            // Check if the move is a valid suit
             if (!game.realPlayer.SuitMatch(selectedCard, game.pile, game.currentSuit))
             {
+                // If not than display invalidturn message to user
                 game.InvalidMove();
                 return;
             }
@@ -125,12 +149,15 @@ namespace CrazyEightsCosc2200
             if (game.rules.IsCardEight(selectedCard))
             {
                 selectedCard = null;
+
+                // Display suit selection screen
                 SuitScreen.Visibility = Visibility.Visible;
                 DarkBackground.Visibility = Visibility.Visible;
-                return; // wait for suit selection before next turn
+                return; 
             }
             else
             {
+                // Clear current suit
                 game.SetCurrentSuit("");
             }
 
@@ -140,8 +167,10 @@ namespace CrazyEightsCosc2200
             if (game.realPlayer.hand.HandIsEmpty())
             {
                 Player winner = game.AnnounceWinner();
+                // If theres a winner
                 if (winner != null)
                 {
+                    // Display winner screen
                     ShowWinnerScreen(winner);
                     return;
                 }
@@ -152,19 +181,25 @@ namespace CrazyEightsCosc2200
 
             // Check if computer won after their turn
             Player computerWinner = game.AnnounceWinner();
+            // If computer won
             if (computerWinner != null)
             {
+                // Display winner screen
                 ShowWinnerScreen(computerWinner);
                 return;
             }
 
+            // Update UI
             game.UpdateUI();
         }
 
         // Suit selection handlers.
         private void SuitChosen(string suit)
         {
+            // Set current suit to the select suit
             game.SetCurrentSuit(suit);
+
+            // Display suit selection screen
             SuitScreen.Visibility = Visibility.Collapsed;
             DarkBackground.Visibility = Visibility.Collapsed;
 
@@ -173,27 +208,33 @@ namespace CrazyEightsCosc2200
             {
                 // Check for winner
                 Player winner = game.AnnounceWinner();
+                // If theres a winner
                 if (winner != null)
                 {
+                    // Display winner screen
                     ShowWinnerScreen(winner);
                     return;
                 }
             }
 
+            // Move to computer turn
             game.NextTurn();
 
             // Check if computer won after their turn
             Player computerWinner = game.AnnounceWinner();
+            // If computer wins
             if (computerWinner != null)
             {
+                // Display winner screen
                 ShowWinnerScreen(computerWinner);
                 return;
             }
 
+            // Update UI
             game.UpdateUI();
         }
 
-        // Click events for each suit in suit screen.
+        // Click events for each suit in the suit selection screen.
         public void SuitHearts(object sender, RoutedEventArgs e) => SuitChosen("Hearts");
         public void SuitDiamonds(object sender, RoutedEventArgs e) => SuitChosen("Diamonds");
         public void SuitClubs(object sender, RoutedEventArgs e) => SuitChosen("Clubs");
@@ -203,62 +244,77 @@ namespace CrazyEightsCosc2200
         // Show the winner screen.
         private void ShowWinnerScreen(Player winner)
         {
+            // Set DarkBackground to visible
             DarkBackground.Visibility = Visibility.Visible;
+            // Set WinnerScreen to visible
             WinnerScreen.Visibility = Visibility.Visible;
 
+            // If the player won
             if (winner.Name == game.realPlayer.Name)
             {
+                // Display winner text
                 WinnerText.Text = "Congratulations!";
                 WinnerSubText.Text = "You won the game!";
             }
+            // If computer won
             else
             {
+                // Display loser text
                 WinnerText.Text = "Better luck next time!";
                 WinnerSubText.Text = "The computer won the game.";
             }
         }
 
-        // Play Again button on winner screen
+        // Play Again button on winner screen.
         public void WinnerResetClick(object sender, RoutedEventArgs e)
         {
+            // Set WinnerScreen to invisible
             WinnerScreen.Visibility = Visibility.Collapsed;
+            // Set DarkBackground to invisible
             DarkBackground.Visibility = Visibility.Collapsed;
+
+            // Reset to a new game
             game.ResetGame();
         }
 
-        // Exit button on winner screen
+        // Exit button on winner screen.
         public void WinnerExitClick(object sender, RoutedEventArgs e)
         {
+            // Close program
             Close();
         }
-
-
 
 
         // Settings click (toggle visibility of the settings screen).
         public void settingsClick(object sender, RoutedEventArgs e)
         {
+            // If the settings menu is open
             if (SettingsScreen.Visibility == Visibility.Visible)
             {
+                // Close the menu
                 SettingsScreen.Visibility = Visibility.Collapsed;
                 DarkBackground.Visibility = Visibility.Collapsed;
             }
+            // If the settings menu is closed
             else
             {
+                // Open the menu
                 SettingsScreen.Visibility = Visibility.Visible;
                 DarkBackground.Visibility = Visibility.Visible;
             }
         }
 
-        // Apply settings click (when user saves settings - apply them live)
+        // Apply settings click (when user saves settings - apply them live).
         public void ApplySettings()
         {
-            // Convert hex string → Brush
+            // Use BrushConverter to get the colors (get hex code from the tag in the combo box items)
             var BackgroundBrush = (Brush)new BrushConverter().ConvertFromString(settings.BackgroundColor);
             var MenuBrush = (Brush)new BrushConverter().ConvertFromString(settings.MenuColor);
 
-            // Apply colors
+            // Apply color to background
             GameBackground.Background = BackgroundBrush;
+
+            // Apply color to menu
             GameTopMenu.Background = MenuBrush;
             GameBottomMenu.Background = MenuBrush;
             buttonRules.Background = MenuBrush;
@@ -271,15 +327,22 @@ namespace CrazyEightsCosc2200
         // Save settings click — inside the settings panel.
         public void SaveSettingsClick(object sender, RoutedEventArgs e)
         {
+            // Get the selected background color from the selected combo box item
             if (BackgroundColorPicker.SelectedItem is ComboBoxItem selectedBackgroundColor)
+                // Store selected color
                 settings.BackgroundColor = selectedBackgroundColor.Tag.ToString();
 
+            // Get the selected menu color from the selected combo box item
             if (MenuColorPicker.SelectedItem is ComboBoxItem selectedMenuColor)
+                // Store selected color
                 settings.MenuColor = selectedMenuColor.Tag.ToString();
 
+            // Save selected settings
             settings.SaveSettings();
+            // Apply selected settings live
             ApplySettings();
 
+            // Close SettingsScreen
             SettingsScreen.Visibility = Visibility.Collapsed;
             DarkBackground.Visibility = Visibility.Collapsed;
         }
@@ -297,6 +360,7 @@ namespace CrazyEightsCosc2200
         // Exit program click.
         public void exitClick(object sender, RoutedEventArgs e)
         {
+            // Close program
             Close();
         }
     }
