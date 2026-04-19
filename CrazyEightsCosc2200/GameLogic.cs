@@ -21,6 +21,17 @@ namespace CrazyEightsCosc2200
         private ComputerPlayer computerPlayer;
         public GameState currentState;
         public string currentSuit = "";
+        public string statusText = "";
+
+        public string StatusText
+        {
+            get => statusText;
+            set
+            {
+                statusText = value;
+                OnPropertyChanged(nameof(StatusText));
+            }
+        }
 
         // Get GameRules.
         public GameRules rules = new GameRules();
@@ -44,6 +55,8 @@ namespace CrazyEightsCosc2200
         // Display the amount of cards left in the deck in the UI.
         public string DeckCountText => $"Deck: {deck.TotalCount}";
 
+        public string TurnText => currentState == GameState.PlayerTurn
+            ? "Your Turn" : "Computer Turn";
 
         // Constructor.
         public GameLogic()
@@ -113,20 +126,27 @@ namespace CrazyEightsCosc2200
         }
 
         // Move to the next turn and some computerPlayer logic.
-        public void NextTurn()
+        // Async so it uses the delay.
+        public async Task NextTurn()
         {
             // If currentState = PlayerTurn
             if (currentState == GameState.PlayerTurn)
             {
                 // Switch to ComputerTurn
                 currentState = GameState.ComputerTurn;
+                // Clear status bar
+                StatusText = "";
+                // Update the ui and pause task for a moment so status text can render
+                UpdateUI();
+                //await Task.Yield();
 
                 // Reshuffle if deck is empty before computer plays
                 if (deck.DeckIsEmpty() && pile.pile.Count > 1)
                     deck.ReshuffleFromPile(pile);
 
                 // Make computer play a card
-                computerPlayer.PlayCard(pile, deck, currentSuit);
+                // Use await for delay
+                await computerPlayer.PlayCard(pile, deck, currentSuit);
 
                 // Clear suit after computer plays
                 currentSuit = "";
@@ -158,13 +178,13 @@ namespace CrazyEightsCosc2200
         // Called when a move is not valid.
         public void InvalidMove()
         {
-            System.Windows.MessageBox.Show("Invalid move! Card must match suit or rank.", "Invalid Move", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
+            StatusText = "Invalid move! Card must match suit or rank.";
         }
 
         // Called when a turn is not valid.
         public void InvalidTurn()
         {
-            System.Windows.MessageBox.Show("It's not your turn!", "Invalid Turn", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
+            StatusText = "It's not your turn!";
         }
 
         // Update UI components live.
@@ -177,6 +197,8 @@ namespace CrazyEightsCosc2200
             OnPropertyChanged(nameof(ComputerHand));
             OnPropertyChanged(nameof(Pile));
             OnPropertyChanged(nameof(DeckCountText));
+            OnPropertyChanged(nameof(TurnText));
+            OnPropertyChanged(nameof(StatusText));
         }
 
         // Sends the OnPropertyChanged event to notify UI elements when a property has changed.

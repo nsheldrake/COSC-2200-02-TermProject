@@ -20,6 +20,8 @@ namespace CrazyEightsCosc2200
         // Properties.
         private GameLogic game;
         private Card selectedCard = null;
+
+        // New settings object.
         private Settings settings = new Settings();
 
         public MainWindow()
@@ -38,10 +40,11 @@ namespace CrazyEightsCosc2200
 
         // Click event handlers.
 
+
         // When player clicks a card in their hand.
         public void CardClick(object sender, RoutedEventArgs e)
         {
-            //
+            // Get the clicked card as a button
             Button clickedCard = sender as Button;
             // If a card has been clicked
             if (clickedCard != null)
@@ -78,7 +81,7 @@ namespace CrazyEightsCosc2200
         }
 
         // Draw click.
-        public void drawClick(object sender, RoutedEventArgs e)
+        public async void drawClick(object sender, RoutedEventArgs e)
         {
             // If its the computers turn
             if (game.currentState != GameState.PlayerTurn)
@@ -99,7 +102,7 @@ namespace CrazyEightsCosc2200
             game.realPlayer.DrawCard(game.deck);
 
             // Change to computers turn
-            game.NextTurn();
+            await game.NextTurn();
 
             // After computer plays check for winner
             Player winner = game.AnnounceWinner();
@@ -116,13 +119,13 @@ namespace CrazyEightsCosc2200
         }
 
         // Play click.
-        public void playClick(object sender, RoutedEventArgs e)
+        public async void playClick(object sender, RoutedEventArgs e)
         {
             // Make sure a card is selected
             if (selectedCard == null)
             {
                 // Display a message to user, telling them to select a card
-                MessageBox.Show("Please select a card first!", "No Card Selected", MessageBoxButton.OK, MessageBoxImage.Warning);
+                game.StatusText = "Please select a card first";
                 return;
             }
 
@@ -141,6 +144,9 @@ namespace CrazyEightsCosc2200
                 game.InvalidMove();
                 return;
             }
+
+            // Clear status bar
+            game.StatusText = "";
 
             // Play the card
             game.realPlayer.PlayCard(selectedCard, game.pile);
@@ -177,7 +183,7 @@ namespace CrazyEightsCosc2200
             }
 
             // Move to computer turn
-            game.NextTurn();
+            await game.NextTurn();
 
             // Check if computer won after their turn
             Player computerWinner = game.AnnounceWinner();
@@ -194,7 +200,7 @@ namespace CrazyEightsCosc2200
         }
 
         // Suit selection handlers.
-        private void SuitChosen(string suit)
+        private async void SuitChosen(string suit)
         {
             // Set current suit to the select suit
             game.SetCurrentSuit(suit);
@@ -218,7 +224,7 @@ namespace CrazyEightsCosc2200
             }
 
             // Move to computer turn
-            game.NextTurn();
+            await game.NextTurn();
 
             // Check if computer won after their turn
             Player computerWinner = game.AnnounceWinner();

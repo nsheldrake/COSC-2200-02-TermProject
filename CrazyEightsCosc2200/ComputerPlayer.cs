@@ -16,10 +16,19 @@ namespace CrazyEightsCosc2200
         }
 
         // Play a valid card onto the pile automatically.
-        public void PlayCard(Pile pile, Deck deck, string currentSuit = "")
+        // Async so its used with the delay.
+        public async Task PlayCard(Pile pile, Deck deck, string currentSuit = "")
         {
+            // Reference: https://stackoverflow.com/questions/5449956/how-to-add-a-delay-for-a-2-or-3-seconds
+
+            // Use Random() to set a random delay
+            Random rng = new Random();
+            // Delay = 1-5 seconds
+            int delay = rng.Next(1000, 5001); 
+            await Task.Delay(delay);
+
             // Use RandomPlay so ComputerPlayers moves are more random and similar to "AI"
-            Card cardToPlay = RandomPlay(pile);
+            Card cardToPlay = RandomPlay(pile, currentSuit);
 
             if (cardToPlay != null)
             {

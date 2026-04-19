@@ -126,19 +126,69 @@
                 </ScrollViewer>
         </StackPanel>
 
-        <!-- Middle: Deck / Pile -->
-        <Grid x:Name="GameBackground" Background="#0E2B06">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            
-            <!-- Computer Area -->
-            <StackPanel Grid.Row="0"
+            <!-- Middle: Deck / Pile -->
+            <Grid x:Name="GameBackground" Background="#0E2B06">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Row 0: Turn Bar and Status Bar -->
+                <Grid Grid.Row="0" Margin="10,8,10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                           Text="Current Turn:"
+                           Foreground="White"
+                           FontSize="13"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="0,0,8,0"/>
+                    <Border Grid.Column="1"
+                        Background="#0A1F04"
+                        BorderBrush="#2E5E1E"
+                        BorderThickness="1"
+                        CornerRadius="4"
+                        Padding="8,4">
+                        <TextBlock Text="{Binding TurnText}"
+                               Foreground="White"
+                               FontSize="13"
+                               VerticalAlignment="Center"/>
+                    </Border>
+
+                    <TextBlock Grid.Column="3"
+                           Text="Status:"
+                           Foreground="White"
+                           FontSize="13"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="0,0,8,0"/>
+                    <Border Grid.Column="4"
+                        Background="#0A1F04"
+                        BorderBrush="#2E5E1E"
+                        BorderThickness="1"
+                        CornerRadius="4"
+                        Padding="8,4">
+                        <TextBlock Text="{Binding StatusText}"
+                               Foreground="White"
+                               FontSize="13"
+                               TextWrapping="Wrap"
+                               VerticalAlignment="Center"/>
+                    </Border>
+                </Grid>
+
+                <!-- Row 1: Computer Area -->
+                <StackPanel Grid.Row="1"
                         HorizontalAlignment="Center"
                         Margin="0,20,0,10">
-                <TextBlock Text="Computer Player"
+                    <TextBlock Text="Computer Player"
                            Foreground="White"
                            FontSize="16"
                            FontWeight="Bold"
@@ -150,60 +200,51 @@
                                 <StackPanel Orientation="Horizontal"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
-
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Image Source="{Binding BackImage}" Width="60"/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-
                     <TextBlock Text="{Binding OpponentCardCountText}"
                            Foreground="White"
                            FontSize="14"
                            HorizontalAlignment="Center"
-                           Margin="0,8,0,0"/>   
-            </StackPanel>
+                           Margin="0,8,0,0"/>
+                </StackPanel>
 
-                <!-- Deck -->
-                <StackPanel Grid.Row="1"
-                    HorizontalAlignment="Left"
-                    Margin="250,0,0,0"
-                    VerticalAlignment="Center">
-
+                <!-- Row 2: Deck and Pile -->
+                <StackPanel Grid.Row="2"
+                        HorizontalAlignment="Left"
+                        Margin="250,0,0,0"
+                        VerticalAlignment="Center">
                     <TextBlock Text="Deck"
-                       Foreground="White"
-                       HorizontalAlignment="Center"
-                       Margin="0,0,0,5"/>
-
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,5"/>
                     <Image Source="/Images/card_back.png"
                        Width="100"
                        Height="150"/>
-
                     <TextBlock Text="{Binding DeckCountText}"
-                       Foreground="White"
-                       HorizontalAlignment="Center"/>
+                           Foreground="White"
+                           HorizontalAlignment="Center"/>
                 </StackPanel>
 
-                <!-- Pile -->
-                <StackPanel Grid.Row="1"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
-
+                <StackPanel Grid.Row="2"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
                     <TextBlock Text="Discard Pile"
-                       Foreground="White"
-                       HorizontalAlignment="Center"
-                       Margin="0,0,0,5"/>
-
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,5"/>
                     <Image Source="{Binding Pile.TopCard.FaceImage}"
                        Width="100"
                        Height="150"/>
                 </StackPanel>
 
-
             </Grid>
-            </DockPanel>
-            <!-- Dark Background -->
+        </DockPanel>
+        <!-- Dark Background -->
             <Grid x:Name="DarkBackground"
               Background="#E6000000"
               Visibility="Collapsed"
