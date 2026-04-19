@@ -136,13 +136,23 @@ namespace CrazyEightsCosc2200
                 currentState = GameState.ComputerTurn;
                 // Clear status bar
                 StatusText = "";
-                // Update the ui and pause task for a moment so status text can render
+                // Update the ui here so status text can render before the delay
                 UpdateUI();
-                //await Task.Yield();
 
                 // Reshuffle if deck is empty before computer plays
                 if (deck.DeckIsEmpty() && pile.pile.Count > 1)
+                    // Display Shuffling... to status bar to show that the deck is being shuffled
+                    StatusText = "Shuffling...";
+                    // Update UI to show this message
+                    UpdateUI();
+                    // Display message for 1 second
+                    await Task.Delay(1000);
+                    // Reshuffle
                     deck.ReshuffleFromPile(pile);
+                    // Set status bar back to default
+                    StatusText = "";
+                    // Update UI to show default again
+                    UpdateUI();
 
                 // Make computer play a card
                 // Use await for delay

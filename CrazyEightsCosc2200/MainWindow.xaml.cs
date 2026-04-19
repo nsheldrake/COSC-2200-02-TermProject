@@ -58,7 +58,9 @@ namespace CrazyEightsCosc2200
         public void resetClick(object sender, RoutedEventArgs e)
         {
             // Call ResetGame() from GameLogic
-            game.ResetGame();   
+            game.ResetGame();
+            // Display New Game! when you reset to a new game
+            game.StatusText = "New Game!";
         }
 
         // Rules click.
@@ -94,8 +96,18 @@ namespace CrazyEightsCosc2200
             // If deck is empty
             if (game.deck.DeckIsEmpty())
             {
-                // Reshuffle the pile
+                // Display Shuffling... to status bar to show that the deck is being shuffled
+                game.StatusText = "Shuffling...";
+                // Update UI to show this message
+                game.UpdateUI();
+                // Display message for 1 second
+                await Task.Delay(1000);
+                // Reshuffle
                 game.deck.ReshuffleFromPile(game.pile);
+                // Set status bar back to default
+                game.StatusText = "";
+                // Update UI to show default again
+                game.UpdateUI();
             }
 
             // Draw a card from the deck and give it to the players hand
@@ -281,6 +293,8 @@ namespace CrazyEightsCosc2200
 
             // Reset to a new game
             game.ResetGame();
+            // Display New Game! when you reset to a new game
+            game.StatusText = "New Game!";
         }
 
         // Exit button on winner screen.
