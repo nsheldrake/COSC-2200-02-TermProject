@@ -304,9 +304,6 @@
             </StackPanel>
         </Grid>
 
-
-
-
         <!-- Dark Background -->
         <Grid x:Name="DarkBackground"
             Background="#E6000000"
@@ -511,6 +508,7 @@
             </Border>
         </Grid>
 
+        <!-- Rules Screen -->
         <Grid x:Name="RulesScreen"
               Visibility="Collapsed"
               Panel.ZIndex="2">
