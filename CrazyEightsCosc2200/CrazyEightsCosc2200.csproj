@@ -65,6 +65,7 @@
     <None Remove="images\card_spades_ten.png" />
     <None Remove="images\card_spades_three.png" />
     <None Remove="images\card_spades_two.png" />
+    <None Remove="images\game_background.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -124,6 +125,7 @@
     <Resource Include="images\card_spades_ten.png" />
     <Resource Include="images\card_spades_three.png" />
     <Resource Include="images\card_spades_two.png" />
+    <Resource Include="images\game_background.png" />
   </ItemGroup>
 
   <ItemGroup>

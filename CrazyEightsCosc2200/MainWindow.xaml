@@ -58,7 +58,7 @@
                             Background="#06193B"
                             Foreground="White"
                             BorderBrush="#6666BB"
-                            Click="exitClick"/>
+                            Click="GameExitClick"/>
                 </StackPanel>
 
             <!-- Center: Game Title -->
@@ -244,11 +244,74 @@
 
             </Grid>
         </DockPanel>
+
+        <!-- Main Menu Screen -->
+        <Grid x:Name="MainMenuScreen"
+              Panel.ZIndex="10"
+              Visibility="Visible">
+              <Grid.Background>
+                  <ImageBrush ImageSource="/Images/game_background.png"
+                      Stretch="UniformToFill"/>
+              </Grid.Background>
+
+            <StackPanel HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+                <TextBlock Text="CRAZY 8'S"
+                   FontSize="60"
+                   FontWeight="Bold"
+                   Foreground="White"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,50"/>
+
+                <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,0,0,20">
+                    <TextBlock Text="Player Name:"
+                       Foreground="White"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="0,0,10,0"/>
+                    <TextBox x:Name="PlayerNameInput"
+                     Width="200"
+                     Height="35"
+                     FontSize="14"
+                     Padding="6,4"
+                     Background="#646B64"
+                     Foreground="White"
+                     BorderBrush="Blue"
+                     CaretBrush="White"/>
+                </StackPanel>
+
+                <Button Content="New Game"
+                Width="200" Height="45"
+                Margin="0,0,0,15"
+                Background="#3D403D"
+                Foreground="Green"
+                BorderBrush="Green"
+                FontSize="16"
+                Click="StartGameClick"/>
+
+                <Button Content="Exit"
+                Width="200" Height="45"
+                Background="#3D403D"
+                Foreground="Red"
+                BorderBrush="Red"
+                FontSize="16"
+                Click="exitClick"/>
+
+            </StackPanel>
+        </Grid>
+
+
+
+
         <!-- Dark Background -->
-            <Grid x:Name="DarkBackground"
-              Background="#E6000000"
-              Visibility="Collapsed"
-              Panel.ZIndex="1"/>
+        <Grid x:Name="DarkBackground"
+            Background="#E6000000"
+            Visibility="Collapsed"
+            Panel.ZIndex="1"/>
 
         <!-- Settings Screen -->
         <Grid x:Name="SettingsScreen"

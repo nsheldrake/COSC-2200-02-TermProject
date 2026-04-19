@@ -35,6 +35,26 @@ namespace CrazyEightsCosc2200
             ApplySettings();
         }
 
+        // Start game button (Main Menu)
+        public void StartGameClick(object sender, RoutedEventArgs e)
+        {
+            string name = PlayerNameInput.Text.Trim();
+
+            if (string.IsNullOrEmpty(name))
+            {
+                MessageBox.Show("Please enter your name!", "Name Required", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // Set the player name
+            game.realPlayer.Name = name;
+
+            // Hide main menu and start the game
+            MainMenuScreen.Visibility = Visibility.Collapsed;
+            game.ResetGame();
+            game.StatusText = "New Game!";
+        }
+
 
 
 
@@ -271,7 +291,7 @@ namespace CrazyEightsCosc2200
             if (winner.Name == game.realPlayer.Name)
             {
                 // Display winner text
-                WinnerText.Text = "Congratulations!";
+                WinnerText.Text = "Congratulations! " + game.realPlayer.Name;
                 WinnerSubText.Text = "You won the game!";
             }
             // If computer won
@@ -382,6 +402,15 @@ namespace CrazyEightsCosc2200
         {
             // Close program
             Close();
+        }
+
+        // Exit game click - return to main menu.
+        public void GameExitClick(object sender, RoutedEventArgs e)
+        {
+            // Open main menu
+            MainMenuScreen.Visibility = Visibility.Visible;
+            // Clear status bar
+            game.StatusText = "";
         }
     }
 }

@@ -56,7 +56,7 @@ namespace CrazyEightsCosc2200
         public string DeckCountText => $"Deck: {deck.TotalCount}";
 
         public string TurnText => currentState == GameState.PlayerTurn
-            ? "Your Turn" : "Computer Turn";
+            ? realPlayer.Name : "Computer";
 
         // Constructor.
         public GameLogic()
@@ -67,7 +67,7 @@ namespace CrazyEightsCosc2200
             computerPlayer = new ComputerPlayer("AI");
             currentState = GameState.StartGame;
             // When program starts, start a new game
-            StartGame();
+            //StartGame();
         }
 
         // Used to start new games.
