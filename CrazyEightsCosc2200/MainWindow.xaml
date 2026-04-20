@@ -79,6 +79,7 @@
                             Background="#06193B"
                             Foreground="White"
                             BorderBrush="#6666BB"
+                            ToolTip="Open the game guide and rules (F1)"
                             Click="rulesClick"/>
                     <Button x:Name="buttonSettings"
                             Content="Settings"
@@ -87,6 +88,7 @@
                             Background="#06193B"
                             Foreground="White"
                             BorderBrush="#6666BB"
+                            ToolTip="Open settings menu (Ctrl + S)"
                             Click="settingsClick"/>
                 </StackPanel>
 
@@ -102,6 +104,7 @@
                             Background="#06193B"
                             Foreground="White"
                             BorderBrush="#6666BB"
+                            ToolTip="Start a new game and reset all cards (Ctrl + R)"
                             Click="resetClick"/>
                     <Button x:Name="buttonExit"
                             Content="Exit"
@@ -110,6 +113,7 @@
                             Background="#06193B"
                             Foreground="White"
                             BorderBrush="#6666BB"
+                            ToolTip="End current game and return to main menu (Esc)"
                             Click="GameExitClick"/>
                 </StackPanel>
 
@@ -136,6 +140,7 @@
                         Background="#2C4863"
                         Foreground="White"
                         BorderBrush="#517DA8"
+                        ToolTip="Draw a card from the deck if you have no valid move (Ctrl + D)"
                         Click="drawClick"/>
                 <Button x:Name="buttonPlay"
                         Content="Play"
@@ -144,6 +149,7 @@
                         Background="#1B520C"
                         Foreground="White"
                         BorderBrush="#389C38"
+                        ToolTip="Play the selected card onto the pile (Ctrl + P)"
                         Click="playClick"/>
             </StackPanel>
             
@@ -343,6 +349,7 @@
                 Foreground="Green"
                 BorderBrush="Green"
                 FontSize="16"
+                ToolTip="Start new game (Enter)"
                 Click="StartGameClick"/>
 
                 <Button Content="Exit"
@@ -351,6 +358,7 @@
                 Foreground="Red"
                 BorderBrush="Red"
                 FontSize="16"
+                ToolTip="Exit the application (Esc)"
                 Click="exitClick"/>
 
             </StackPanel>
@@ -548,11 +556,13 @@
                         <Button Content="Save"
                                 Width="120"
                                 Margin="10,0"
+                                ToolTip="Save and apply selected settings"
                                 Click="SaveSettingsClick"/>
 
                         <Button Content="Exit"
                                 Width="120"
                                 Margin="10,0"
+                                ToolTip="Exit from the setting"
                                 Click="ExitSettingsClick"/>
                     </StackPanel>
 
@@ -602,6 +612,7 @@
                             Width="120"
                             Margin="0,20,0,0"
                             HorizontalAlignment="Center"
+                            ToolTip="Exit from the guide"
                             Click="CloseRulesClick"/>
 
                 </StackPanel>
@@ -627,21 +638,25 @@
                 Width="100" Height="40" Margin="10"
                 Background="#06193B" Foreground="White"
                 BorderBrush="#6666BB"
+                ToolTip="Choose Hearts as the new suit"
                 Click="SuitHearts"/>
                 <Button Content="Diamonds"
                 Width="100" Height="40" Margin="10"
                 Background="#06193B" Foreground="White"
                 BorderBrush="#6666BB"
+                ToolTip="Choose Diamonds as the new suit"
                 Click="SuitDiamonds"/>
                 <Button Content="Clubs"
                 Width="100" Height="40" Margin="10"
                 Background="#06193B" Foreground="White"
                 BorderBrush="#6666BB"
+                ToolTip="Choose Clubs as the new suit"
                 Click="SuitClubs"/>
                 <Button Content="Spades"
                 Width="100" Height="40" Margin="10"
                 Background="#06193B" Foreground="White"
                 BorderBrush="#6666BB"
+                ToolTip="Choose Spades as the new suit"
                 Click="SuitSpades"/>
             </StackPanel>
 
@@ -672,11 +687,13 @@
                 Width="120" Height="40" Margin="10"
                 Background="#06193B" Foreground="White"
                 BorderBrush="#6666BB"
+                ToolTip="Start a new game"
                 Click="WinnerResetClick"/>
                 <Button Content="Exit"
                 Width="120" Height="40" Margin="10"
                 Background="#06193B" Foreground="White"
                 BorderBrush="#6666BB"
+                ToolTip="Exit the application"
                 Click="WinnerExitClick"/>
             </StackPanel>
 
