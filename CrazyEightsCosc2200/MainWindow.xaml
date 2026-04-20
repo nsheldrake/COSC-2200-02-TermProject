@@ -10,6 +10,58 @@
         MinHeight="700" MinWidth="1000"
         WindowStartupLocation="CenterScreen">
 
+    <!-- HotKeys -->
+    <Window.InputBindings>
+        <!-- Start Game (Enter) -->
+        <KeyBinding Key="Enter" Command="{x:Static ApplicationCommands.New}" />
+       
+        <!-- Guide -->
+        <KeyBinding Key="F1" Command="{x:Static ApplicationCommands.Help}" />
+
+        <!-- Draw -->
+        <KeyBinding Key="D" Modifiers="Ctrl" Command="{x:Static ApplicationCommands.Open}" />
+
+        <!-- Play -->
+        <KeyBinding Key="P" Modifiers="Ctrl" Command="{x:Static ApplicationCommands.Save}" />
+
+        <!-- Reset -->
+        <KeyBinding Key="R" Modifiers="Ctrl" Command="{x:Static ApplicationCommands.New}" />
+
+        <!-- Settings -->
+        <KeyBinding Key="S" Modifiers="Ctrl" Command="{x:Static ApplicationCommands.Properties}" />
+
+        <!-- Exit / Back -->
+        <KeyBinding Key="Escape" Command="{x:Static ApplicationCommands.Close}" />
+    </Window.InputBindings>
+
+    <Window.CommandBindings>
+
+        <!-- Guide -->
+        <CommandBinding Command="{x:Static ApplicationCommands.Help}"
+                    Executed="GuideCommand_Executed"/>
+
+        <!-- Draw -->
+        <CommandBinding Command="{x:Static ApplicationCommands.Open}"
+                    Executed="DrawCommand_Executed"/>
+
+        <!-- Play -->
+        <CommandBinding Command="{x:Static ApplicationCommands.Save}"
+                    Executed="PlayCommand_Executed"/>
+
+        <!-- Reset / Start Game -->
+        <CommandBinding Command="{x:Static ApplicationCommands.New}"
+                    Executed="ResetCommand_Executed"/>
+
+        <!-- Settings -->
+        <CommandBinding Command="{x:Static ApplicationCommands.Properties}"
+                    Executed="SettingsCommand_Executed"/>
+
+        <!-- Exit / ESC -->
+        <CommandBinding Command="{x:Static ApplicationCommands.Close}"
+                    Executed="CloseCommand_Executed"/>
+
+    </Window.CommandBindings>
+
     <Grid>
         <DockPanel>
         <!-- Top Menu Bar -->

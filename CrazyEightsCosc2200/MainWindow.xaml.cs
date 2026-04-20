@@ -412,5 +412,75 @@ namespace CrazyEightsCosc2200
             // Clear status bar
             game.StatusText = "";
         }
+
+        // Guide (F1)
+        private void GuideCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            rulesClick(sender, null);
+        }
+
+        // Draw (Ctrl + D)
+        private async void DrawCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            drawClick(sender, null);
+        }
+
+        // Play (Ctrl + P)
+        private async void PlayCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            playClick(sender, null);
+        }
+
+        // Reset (Ctrl + R) and Start Game (Enter)
+        private void ResetCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (MainMenuScreen.Visibility == Visibility.Visible)
+            {
+                StartGameClick(sender, null);
+            }
+            else
+            {
+
+                resetClick(sender, null);
+            }
+        }
+
+        // Settings (Ctrl + S)
+        private void SettingsCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            settingsClick(sender, null);
+        }
+        private void CloseCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (RulesScreen.Visibility == Visibility.Visible)
+            {
+                CloseRulesClick(sender, null);
+            }
+            else if (SettingsScreen.Visibility == Visibility.Visible)
+            {
+                ExitSettingsClick(sender, null);
+            }
+            else if (SuitScreen.Visibility == Visibility.Visible)
+            {
+                SuitScreen.Visibility = Visibility.Collapsed;
+                DarkBackground.Visibility = Visibility.Collapsed;
+            }
+            else if (WinnerScreen.Visibility == Visibility.Visible)
+            {
+                WinnerScreen.Visibility = Visibility.Collapsed;
+                DarkBackground.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                if (MainMenuScreen.Visibility == Visibility.Visible)
+                {
+                    exitClick(sender, null);       // close app
+                }
+                else
+                {
+                    GameExitClick(sender, null);   // back to menu
+                }
+            }
+        }
     }
 }

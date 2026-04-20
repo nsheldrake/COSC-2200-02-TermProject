@@ -41,3 +41,25 @@ C:\college2\year2\year2semester2\cosc2200\crazyeights_cosc2200\COSC-2200-02-Term
 C:\college2\year2\year2semester2\cosc2200\crazyeights_cosc2200\COSC-2200-02-TermProject\CrazyEightsCosc2200\obj\Debug\net8.0-windows\CrazyEightsCosc2200.sourcelink.json
 C:\college2\year2\year2semester2\cosc2200\crazyeights_cosc2200\COSC-2200-02-TermProject\CrazyEightsCosc2200\obj\Debug\net8.0-windows\CrazyEightsCosc2200.genruntimeconfig.cache
 C:\college2\year2\year2semester2\cosc2200\crazyeights_cosc2200\COSC-2200-02-TermProject\CrazyEightsCosc2200\obj\Debug\net8.0-windows\ref\CrazyEightsCosc2200.dll
+C:\Users\amyle\Desktop\Durham College\2026 Winter\COSC2200 Project\CrazyEightsCosc2200\bin\Debug\net8.0-windows\settings.json
+C:\Users\amyle\Desktop\Durham College\2026 Winter\COSC2200 Project\CrazyEightsCosc2200\bin\Debug\net8.0-windows\CrazyEightsCosc2200.exe
+C:\Users\amyle\Desktop\Durham College\2026 Winter\COSC2200 Project\CrazyEightsCosc2200\bin\Debug\net8.0-windows\CrazyEightsCosc2200.deps.json
+C:\Users\amyle\Desktop\Durham College\2026 Winter\COSC2200 Project\CrazyEightsCosc2200\bin\Debug\net8.0-windows\CrazyEightsCosc2200.runtimeconfig.json
+C:\Users\amyle\Desktop\Durham College\2026 Winter\COSC2200 Project\CrazyEightsCosc2200\bin\Debug\net8.0-windows\CrazyEightsCosc2200.dll
+C:\Users\amyle\Desktop\Durham College\2026 Winter\COSC2200 Project\CrazyEightsCosc2200\bin\Debug\net8.0-windows\CrazyEightsCosc2200.pdb
+C:\Users\amyle\Desktop\Durham College\2026 Winter\COSC2200 Project\CrazyEightsCosc2200\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\amyle\Desktop\Durham College\2026 Winter\COSC2200 Project\CrazyEightsCosc2200\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\amyle\Desktop\Durham College\2026 Winter\COSC2200 Project\CrazyEightsCosc2200\obj\Debug\net8.0-windows\CrazyEightsCosc2200_MarkupCompile.cache
+C:\Users\amyle\Desktop\Durham College\2026 Winter\COSC2200 Project\CrazyEightsCosc2200\obj\Debug\net8.0-windows\CrazyEightsCosc2200_MarkupCompile.lref
+C:\Users\amyle\Desktop\Durham College\2026 Winter\COSC2200 Project\CrazyEightsCosc2200\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\amyle\Desktop\Durham College\2026 Winter\COSC2200 Project\CrazyEightsCosc2200\obj\Debug\net8.0-windows\CrazyEightsCosc2200.g.resources
+C:\Users\amyle\Desktop\Durham College\2026 Winter\COSC2200 Project\CrazyEightsCosc2200\obj\Debug\net8.0-windows\CrazyEightsCosc2200.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\amyle\Desktop\Durham College\2026 Winter\COSC2200 Project\CrazyEightsCosc2200\obj\Debug\net8.0-windows\CrazyEightsCosc2200.AssemblyInfoInputs.cache
+C:\Users\amyle\Desktop\Durham College\2026 Winter\COSC2200 Project\CrazyEightsCosc2200\obj\Debug\net8.0-windows\CrazyEightsCosc2200.AssemblyInfo.cs
+C:\Users\amyle\Desktop\Durham College\2026 Winter\COSC2200 Project\CrazyEightsCosc2200\obj\Debug\net8.0-windows\CrazyEightsCosc2200.csproj.CoreCompileInputs.cache
+C:\Users\amyle\Desktop\Durham College\2026 Winter\COSC2200 Project\CrazyEightsCosc2200\obj\Debug\net8.0-windows\CrazyEightsCosc2200.sourcelink.json
+C:\Users\amyle\Desktop\Durham College\2026 Winter\COSC2200 Project\CrazyEightsCosc2200\obj\Debug\net8.0-windows\CrazyEightsCosc2200.dll
+C:\Users\amyle\Desktop\Durham College\2026 Winter\COSC2200 Project\CrazyEightsCosc2200\obj\Debug\net8.0-windows\refint\CrazyEightsCosc2200.dll
+C:\Users\amyle\Desktop\Durham College\2026 Winter\COSC2200 Project\CrazyEightsCosc2200\obj\Debug\net8.0-windows\CrazyEightsCosc2200.pdb
+C:\Users\amyle\Desktop\Durham College\2026 Winter\COSC2200 Project\CrazyEightsCosc2200\obj\Debug\net8.0-windows\CrazyEightsCosc2200.genruntimeconfig.cache
+C:\Users\amyle\Desktop\Durham College\2026 Winter\COSC2200 Project\CrazyEightsCosc2200\obj\Debug\net8.0-windows\ref\CrazyEightsCosc2200.dll
