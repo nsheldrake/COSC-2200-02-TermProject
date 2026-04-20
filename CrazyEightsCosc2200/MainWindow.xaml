@@ -73,7 +73,7 @@
                             VerticalAlignment="Center"
                             Margin="8,0">
                     <Button x:Name="buttonRules"
-                            Content="Rules"
+                            Content="Guide"
                             Height="30"
                             Width="80" Margin="6"
                             Background="#06193B"
@@ -575,8 +575,8 @@
               Visibility="Collapsed"
               Panel.ZIndex="2">
 
-            <Border Width="700"
-                    Height="450"
+            <Border Width="900"
+                    Height="500"
                     Background="#DD2D2D2D"
                     CornerRadius="15"
                     HorizontalAlignment="Center"
@@ -584,40 +584,159 @@
                     Padding="20"
                     BorderBrush="White"
                     BorderThickness="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <StackPanel>
-
-                    <TextBlock Text="How to Play Crazy Eights"
-                               FontSize="30"
+                    <!-- Title -->
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="3"
+                               Text="Game Guide"
+                               FontSize="32"
                                FontWeight="Bold"
                                Margin="0,0,0,15"
                                Foreground="White"
-                               HorizontalAlignment="Center"/>
+                               HorizontalAlignment="Center"
+                               TextAlignment="Center"/>
+                    <!-- Left Side: Rules -->
+                    <Border Grid.Row="1"
+                            Grid.Column="0"
+                            Background="#402D2D2D"
+                            CornerRadius="12"
+                            Padding="15"
+                            BorderBrush="White"
+                            BorderThickness="1"
+                            Margin="0,0,10,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
 
-                    <TextBlock TextWrapping="Wrap"
-                               Foreground="White"
-                               FontSize="22"
-                               HorizontalAlignment="Center">
+                            <TextBlock Grid.Row="0"
+                                       Text="Game Rules"
+                                       FontSize="20"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       Margin="0,0,0,10"
+                                       HorizontalAlignment="Center"/>
 
-                                1. Each player is dealt 5 cards.<LineBreak/>
-                                2. The remaining cards form the draw pile.<LineBreak/>
-                                3. The top card starts the discard pile.<LineBreak/>
-                                4. Match suit or rank to play a card.<LineBreak/>
-                                5. Eights are wild, you can choose a suit.<LineBreak/>
-                                6. If you cannot play, draw a card.<LineBreak/>
-                                7. First player with no cards wins!
-                    </TextBlock>
+                            <ScrollViewer Grid.Row="1"
+                                          VerticalScrollBarVisibility="Auto"
+                                          HorizontalScrollBarVisibility="Auto">
+                                <TextBlock TextWrapping="Wrap"
+                                           Foreground="White"
+                                           FontSize="14"
+                                           LineHeight="22">
+                                    
+    
+                                    1. The goal of Crazy 8's is to be the first player to get rid of all your cards.<LineBreak/>
+                                    
+                                    2. Players take turns playing one card at a time.<LineBreak/>
+                                    
+                                    3. You must match either the suit or the rank of the top card on the discard pile.<LineBreak/>
+                                    
+                                    4. If you cannot play a card, you must draw a card from the deck.<LineBreak/>
+                                    
+                                    5. Eights are wild cards. When you play an Eight, you can choose any suit.<LineBreak/>
+                                    
+                                    6. The first player with no cards left wins the round.
 
-                    <Button Content="Close"
-                            Width="120"
+                                </TextBlock>
+                            </ScrollViewer>
+
+                        </Grid>          
+
+                    </Border>
+
+                    <!-- Right Side: Buttons/Features -->
+                    <Border Grid.Row="1"
+                            Grid.Column="2"
+                            Background="#402D2D2D"
+                            CornerRadius="12"
+                            Padding="15"
+                            BorderBrush="White"
+                            BorderThickness="1"
+                            Margin="10,0,0,0">
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0"
+                                       Text="Controls and Features"
+                                       FontSize="20"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       Margin="0,0,0,10"
+                                       HorizontalAlignment="Center"/>
+                            <ScrollViewer Grid.Row="1"
+                                          VerticalScrollBarVisibility="Auto"
+                                          HorizontalScrollBarVisibility="Disabled">
+
+                                <TextBlock TextWrapping="Wrap"
+                                           Foreground="White"
+                                           FontSize="14"
+                                           LineHeight="22">
+                                    
+
+                                    • Draw Button: Draws one card from the deck when you cannot play.<LineBreak/>
+
+                                    • Play Button: Plays the selected card if it is a valid move.<LineBreak/>
+
+                                    • Reset Button: Starts a new game and resets the current round.<LineBreak/>
+
+                                    • Settings Button: Opens the settings menu and lets the player change colours.<LineBreak/>
+
+                                    • Exit Button: Returns to the main menu or exits the application.<LineBreak/>
+
+                                    • Card Selection: Click a card in your hand first, then press Play.<LineBreak/>
+
+                                    • Hotkeys:<LineBreak/>
+                                    F1 = Guide<LineBreak/>
+                                    Ctrl + D = Draw<LineBreak/>
+                                    Ctrl + P = Play<LineBreak/>
+                                    Ctrl + R = Reset<LineBreak/>
+                                    Ctrl + S = Settings<LineBreak/>
+                                    Esc = Exit / Back
+
+                                </TextBlock>
+
+                            </ScrollViewer>
+
+                        </Grid>
+
+                    </Border>
+                    
+                    <!-- Close Button -->
+                    <Button Grid.Row="2"
+                            Grid.ColumnSpan="3"
+                            Content="Close"
+                            Width="140"
+                            Height="40"
                             Margin="0,20,0,0"
                             HorizontalAlignment="Center"
+                            Background="#06193B"
+                            Foreground="White"
+                            BorderBrush="#6666BB"
                             ToolTip="Exit from the guide"
                             Click="CloseRulesClick"/>
 
-                </StackPanel>
+                </Grid>
             </Border>
         </Grid>
+
 
         <!-- Suit Selection Screen -->
         <StackPanel x:Name="SuitScreen"
