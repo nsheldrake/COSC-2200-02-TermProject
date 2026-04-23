@@ -308,6 +308,7 @@
               Panel.ZIndex="10"
               Visibility="Visible">
               <Grid.Background>
+                  <!-- Reference: Image was created using Microsoft Copilot -->
                   <ImageBrush ImageSource="/Images/game_background.png"
                       Stretch="UniformToFill"/>
               </Grid.Background>

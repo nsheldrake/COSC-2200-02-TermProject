@@ -23,6 +23,7 @@ namespace CrazyEightsCosc2200
         public string currentSuit = "";
         public string statusText = "";
 
+        // Get and set messages to the status bar.
         public string StatusText
         {
             get => statusText;
@@ -210,6 +211,8 @@ namespace CrazyEightsCosc2200
             OnPropertyChanged(nameof(TurnText));
             OnPropertyChanged(nameof(StatusText));
         }
+
+        // Reference: https://stackoverflow.com/questions/12034840/handling-onpropertychanged
 
         // Sends the OnPropertyChanged event to notify UI elements when a property has changed.
         protected void OnPropertyChanged([CallerMemberName] string name = null)
